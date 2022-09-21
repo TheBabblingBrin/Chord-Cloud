@@ -3,6 +3,7 @@
 ## Database Schema Design
 
 `<insert database schema design here>`
+![alt text](./assets/images/dbdiagram.PNG)
 
 ## API Documentation
 
