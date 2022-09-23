@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/TheBabblingBrin/SoundCloud-clone/issues"
   },
-  "homepage": "https://github.com/TheBabblingBrin/SoundCloud-clone#readme"
+  "homepage": "https://github.com/TheBabblingBrin/SoundCloud-clone#readme",
+  "dependencies": {
+    "pg": "^8.8.0"
+  }
 }
