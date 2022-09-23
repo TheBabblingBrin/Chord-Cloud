@@ -4,7 +4,7 @@
 
 ![soundcloud-dbdiagram]
 
-[soundcloud-dbdiagram]: ../assets/soundcloud_dbdiagram.png
+[soundcloud-dbdiagram]: ./assets/soundcloud_dbdiagram.png
 
 ## API Documentation
 
@@ -950,7 +950,7 @@ Deletes a song from an existing playlist.
       "statusCode": 404
     }
     ```
-    
+
 * Error response: Couldn't find a Song with the specified id on the specified Playlist
   * Status Code: 404
   * Headers:
