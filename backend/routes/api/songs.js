@@ -63,7 +63,8 @@ router.put('/:songId', requireAuth, async (req, res, next) =>{
 //Create song w or w/o album id
 router.post('/', async (req, res, next) =>{
   const {title, description, url, imageUrl, albumId} = req.body
-  const song = await Song.create({title, description, url, imageUrl, albumId})
+  const userId = req.user.id
+  const song = await Song.create({userId,title, description, url, imageUrl, albumId})
   res.json(song)
 })
 ////COMMENTS
