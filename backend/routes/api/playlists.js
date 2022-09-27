@@ -15,10 +15,11 @@ router.post('/', requireAuth, async(req, res, next)=>{
 
 //ADD song to playlist by Id
 router.post('/:playlistId/songs', requireAuth, async (req, res, next)=>{
-  const playlistId = parseInt(req.params.playlistId)
+  const plId = parseInt(req.params.playlistId)
   const {songId} = req.body
-  const addSong = await PlaylistSong.create({playlistId: playlistId, songId: songId})
-  res.json(addSong)
+  const addSong = await PlaylistSong.create({playlistId: plId, songId: songId})
+  const {id, playlistId} = addSong
+  res.json({id, playlistId, songId})
 })
 
 //GET playlist of current user
@@ -29,7 +30,7 @@ router.get('/current', requireAuth, async (req, res, next) =>{
       userId: user
     }
   })
-  res.json(playlists)
+  res.json({Playlist: playlists})
 })
 //GET details of playlist by Id
 router.get('/:playlistId', async (req, res, next)=>{
@@ -59,7 +60,7 @@ router.delete('/:playlistId/songs/:songId', requireAuth, async (req, res, next)=
   })
   // res.json(playlistSong)})
   if(song[0]){
-    song[0].destroy()
+    await song[0].destroy()
     res.json({
       "message": "Successfully deleted",
       "statusCode": 200
