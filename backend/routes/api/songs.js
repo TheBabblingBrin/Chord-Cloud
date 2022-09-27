@@ -1,6 +1,18 @@
 const express = require('express')
 const { setTokenCookie, restoreUser, requireAuth, isOwner} = require('../../utils/auth');
-
+const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
+const validateSong = [
+  check('title')
+  .exists({ checkFalsy: true })
+  .notEmpty()
+  .withMessage("Song title is required"),
+check('url')
+  .exists({ checkFalsy: true })
+  .notEmpty()
+  .withMessage("Audio is required"),
+handleValidationErrors
+];
 const router = express.Router();
 
 const { Song, User, Album, Comment } = require('../../db/models');
@@ -62,27 +74,46 @@ router.get('/current', requireAuth, async (req, res, next) =>{
   res.json({Songs: songs})
 })
 
-//Songs by Artist ID
-router.get('/artist/:artistId/songs', async (req, res, next) =>{
-  const songs = await Song.findAll({
-    where:{
-      userId: req.params.artistId
-    }
-  })
+// //Songs by Artist ID
+// router.get('/artist/:artistId/songs', async (req, res, next) =>{
+//   const artist = await User.findByPk(req.params.artistId)
+//   console.log(artist)
+//   if(artist){
+//     res.statusCode = 404
+//     res.json(  {
+//       "message": "Artist couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
+//   const songs = await Song.findAll({
+//     where:{
+//       userId: req.params.artistId
+//     }
+//   })
 
-  res.json({Songs: songs})
-})
+//   res.json({Songs: songs})
+// })
 
 //GET song by ID
 router.get('/:songId', async (req, res, next) =>{
   const song = await Song.findByPk(req.params.songId, {
     include:[{
-      model: User
+      model: User,
+      attributes:['id','username','imageUrl']
     },
     {
-      model: Album
+      model: Album,
+      attributes:['id','title','imageUrl']
+
     }]
   })
+  if(!song){
+    res.statusCode = 404
+    res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
   res.json(song)
 })
 
@@ -97,10 +128,10 @@ router.put('/:songId', requireAuth, async (req, res, next) =>{
 } )
 
 //Create song w or w/o album id
-router.post('/', async (req, res, next) =>{
+router.post('/', validateSong, requireAuth, async (req, res, next) =>{
   const {title, description, url, imageUrl, albumId} = req.body
   const userId = req.user.id
-  const song = await Song.create({userId,title, description, url, imageUrl, albumId})
+  const song = await Song.create({userId,albumId, title, description, url, imageUrl})
   res.json(song)
 })
 ////COMMENTS

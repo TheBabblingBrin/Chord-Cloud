@@ -31,6 +31,15 @@ router.get('/:artistId', async (req, res, next)=>{
 })
 //GET all songs of an artist by ID
 router.get('/:artistId/songs', async (req, res, next)=>{
+  const artist = await User.findByPk(req.params.artistId)
+  console.log(artist)
+  if(!artist){
+    res.statusCode = 404
+    res.json(  {
+      "message": "Artist couldn't be found",
+      "statusCode": 404
+    })
+  }
     const songs = await Song.findAll({where:{userId: req.params.artistId}})
     res.json({Songs: songs})
 })
