@@ -36,12 +36,12 @@ router.get('/', async (req, res, next) =>{
     page > 10?
       errors.page = "Page must be less than or equal to 10":null;
     page < 1?
-      errors.page = "Page must be less than or equal to 1":null;
+      errors.page = "Page must be greater than or equal to 1":null;
 
     size > 20?
       errors.size = "Size must be less than or equal to 10":null;
     size < 1?
-      errors.size = "Size must be less than or equal to 1":null;
+      errors.size = "Size must be greater than or equal to 1":null;
 
 
   createdAt && typeof createdAt !== 'string'? errors.createdAt = "CreatedAt is invalid":null;
