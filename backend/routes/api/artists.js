@@ -8,6 +8,7 @@ const { Playlist, Song, User, Album, sequelize } = require('../../db/models');
 router.get('/:artistId', async (req, res, next)=>{
     const userId = req.params.artistId
     const artist = await User.findByPk(userId, {
+                  // attributes:['id','username', 'imageUrl'],
                   include: [{
                     model: Song,
                     where:{userId: userId},
@@ -18,13 +19,13 @@ router.get('/:artistId', async (req, res, next)=>{
                     attributes:[]
                   }
                 ],
-                  attributes:{
-                    include:[
+                  attributes:[
+                      'id','username',
                       [sequelize.fn('COUNT', sequelize.col('Songs.userId')), 'totalSongs'],
-                      [sequelize.fn('COUNT', sequelize.col('Albums.userId')), 'totalAlbums']
-                    ],
-                    group:['User.id']
-                  }
+                      [sequelize.fn('COUNT', sequelize.col('Albums.userId')), 'totalAlbums'],
+                      'imageUrl',
+                    ]
+
     })
 
     res.json(artist)
