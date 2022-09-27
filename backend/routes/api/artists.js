@@ -29,7 +29,10 @@ router.get('/:artistId', async (req, res, next)=>{
     res.json(artist)
 
 })
-
-// attributes: [[sequelize.fn('COUNT', sequelize.col('Song.userId')), 'totalSongs']]
+//GET all songs of an artist by ID
+router.get('/:artistId/songs', async (req, res, next)=>{
+    const songs = await Song.findAll({where:{userId: req.params.artistId}})
+    res.json({Songs: songs})
+})
 
 module.exports = router;
