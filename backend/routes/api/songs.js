@@ -1,5 +1,5 @@
 const express = require('express')
-const { setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth, isOwner} = require('../../utils/auth');
 
 const router = express.Router();
 
@@ -135,8 +135,10 @@ router.get('/:songId/comments', async (req, res, next) =>{
 
 //DELETE Song by ID
 router.delete('/:songId', requireAuth, async (req, res, next)=>{
+  const userId = req.user.id
   const songId = req.params.songId
   const song = await Song.findByPk(songId)
+  if(song.id != userId) isOwner(res);
   if(song){
     song.destroy()
     res.json({

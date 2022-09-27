@@ -22,6 +22,16 @@ router.post(
   validateLogin,
   async (req, res, next) => {
     const { credential, password } = req.body;
+    // let errors = {}
+    // credential === null || credential === ''? errors.credential = "Email or username is required": null;
+    // password === null || password === ''? errors.password = "Password is required":null;
+    // if(Object.values(errors).length){
+    //   res.statusCode = 400
+    //   res.json({
+    //     "message": "Validation error",
+    //     "statusCode": 400,
+    //     errors})
+    // }
 
     const user = await User.login({ credential, password });
 
