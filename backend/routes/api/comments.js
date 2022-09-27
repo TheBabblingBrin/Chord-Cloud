@@ -22,7 +22,7 @@ router.delete('/:commentId', requireAuth, async (req, res, next)=>{
       "message": "Successfully deleted",
       "statusCode": 200
   })} else{
-    res.status = 404
+    res.statusCode = 404
     res.json({
       "message": "Comment couldn't be found",
       "statusCode": 404

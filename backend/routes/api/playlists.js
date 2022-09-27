@@ -71,4 +71,22 @@ router.delete('/:playlistId/songs/:songId', requireAuth, async (req, res, next)=
     })
   }
 })
+//DELETE playlist by ID
+router.delete('/:playlistId', requireAuth, async (req, res, next)=>{
+  const playlistId = req.params.playlistId
+  const playlist = await Playlist.findByPk(playlistId)
+  // res.json(playlistSong)})
+  if(playlist){
+    playlist.destroy()
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+  })} else{
+    res.statusCode = 404
+    res.json({
+      "message": "Playlist couldn't be found",
+      "statusCode": 404
+    })
+  }
+})
 module.exports = router;
