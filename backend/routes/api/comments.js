@@ -1,5 +1,5 @@
 const express = require('express')
-const { setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth, isOwner} = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
 
@@ -41,7 +41,7 @@ router.delete('/:commentId', requireAuth, async (req, res, next)=>{
   if(isOwner(res, userId, comment.userId)){
     return
   }
-  
+
   if(comment){
     await comment.destroy()
     res.json({
