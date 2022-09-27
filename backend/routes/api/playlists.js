@@ -4,7 +4,7 @@ const { setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth');
 const router = express.Router();
 
 const { Song, User, Album, Playlist, PlaylistSong } = require('../../db/models');
-
+const { Op } = require('sequelize');
 //CREATE playlist
 router.post('/', requireAuth, async(req, res, next)=>{
   const {name, imageUrl} = req.body
@@ -48,5 +48,27 @@ router.put('/:playlistId', requireAuth, async (req, res, next)=>{
   res.json(playlist)
 })
 
-//DELETE a playlist by id
+//DELETE a song from a playlist by id
+router.delete('/:playlistId/songs/:songId', requireAuth, async (req, res, next)=>{
+  const playlistId = req.params.playlistId
+  const songId = req.params.songId
+  const song = await PlaylistSong.findAll({
+    where:{
+      [Op.and]: [{songId: songId}, {playlistId: playlistId}]
+    }
+  })
+  // res.json(playlistSong)})
+  if(song[0]){
+    song[0].destroy()
+    res.json({
+      "message": "Successfully deleted",
+      "statusCode": 200
+  })} else{
+    res.status = 404
+    res.json({
+      "message": "The specified song was not on this playlist",
+      "statusCode": 404
+    })
+  }
+})
 module.exports = router;
