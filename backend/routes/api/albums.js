@@ -89,9 +89,7 @@ router.delete('/:albumId', requireAuth, async (req, res, next)=>{
   const albumId = req.params.albumId
   const album = await Album.findByPk(albumId)
   const userId = req.user.id
-  if(isOwner(res, userId, album.userId)){
-    return
-  }
+
   if(album){
     if(isOwner(res, userId, album.userId)){
       return
