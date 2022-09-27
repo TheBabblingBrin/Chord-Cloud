@@ -13,6 +13,13 @@ check('url')
   .withMessage("Audio is required"),
 handleValidationErrors
 ];
+const validateComment = [
+  check('body')
+  .exists({ checkFalsy: true })
+  .notEmpty()
+  .withMessage("Comment body text is required"),
+handleValidationErrors
+]
 const router = express.Router();
 
 const { Song, User, Album, Comment } = require('../../db/models');
@@ -158,8 +165,16 @@ router.post('/', validateSong, requireAuth, async (req, res, next) =>{
 ////COMMENTS
 
 //CREATE a comment based on songId
-router.post('/:songId/comments', requireAuth, async (req, res, next) =>{
+router.post('/:songId/comments', validateComment, requireAuth, async (req, res, next) =>{
   const {body} = req.body
+  const song = await Song.findByPk(req.params.songId)
+  if(!song){
+    res.statusCode = 404
+    return res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
   const songId = parseInt(req.params.songId)
   const userId = req.user.id
   const comment = await Comment.create({userId,songId,body})
@@ -169,6 +184,14 @@ router.post('/:songId/comments', requireAuth, async (req, res, next) =>{
 
 //GET comments by songID
 router.get('/:songId/comments', async (req, res, next) =>{
+  const song = await Song.findByPk(req.params.songId)
+  if(!song){
+    res.statusCode = 404
+    return res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
   const comments = await Song.findByPk(req.params.songId, {
     attributes:[],
     include:{
