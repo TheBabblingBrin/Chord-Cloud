@@ -21,6 +21,16 @@ router.post('/:playlistId/songs', requireAuth, async (req, res, next)=>{
   res.json(addSong)
 })
 
+//GET playlist of current user
+router.get('/current', requireAuth, async (req, res, next) =>{
+  const user = req.user.id
+  const playlists = await Playlist.findAll({
+    where:{
+      userId: user
+    }
+  })
+  res.json(playlists)
+})
 //GET details of playlist by Id
 router.get('/:playlistId', async (req, res, next)=>{
   const playlist = await Playlist.findByPk(req.params.playlistId, {
@@ -30,4 +40,13 @@ router.get('/:playlistId', async (req, res, next)=>{
   })
   res.json(playlist)
 })
+//Edit a playlist by id
+router.put('/:playlistId', requireAuth, async (req, res, next)=>{
+  const playlist = await Playlist.findByPk(req.params.playlistId)
+  const {name, imageUrl} = req.body
+  await playlist.update({name, imageUrl})
+  res.json(playlist)
+})
+
+//DELETE a playlist by id
 module.exports = router;
