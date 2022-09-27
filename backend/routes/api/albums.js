@@ -47,7 +47,7 @@ router.get('/:albumId', async (req, res, next) =>{
 router.post('/', requireAuth, async (req, res, next) =>{
   const {title, description, imageUrl} = req.body
   const userId = req.user.id
-  const album = await Album.create({title, description, imageUrl, userId})
+  const album = await Album.create({userId, title, description, imageUrl})
   res.json(album)
 })
 

@@ -55,7 +55,8 @@ router.get('/', async (req, res, next) =>{
    title? where.title = title:null;
   const songs = await Song.findAll({
     include:{
-      model: User
+      model: User,
+      attributes:['id', 'username', 'imageUrl']
     },
     where,
     ...pagination
