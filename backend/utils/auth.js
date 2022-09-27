@@ -59,12 +59,15 @@ const requireAuth = function (req, _res, next) {
   return next(err);
 }
 
-const isOwner = (res) =>{
+const isOwner = (res, userId, recId) =>{
+  if(userId != recId){
   res.statusCode = 403
-  return res.json(  {
+  res.json(  {
     "message": "Forbidden",
     "statusCode": 403
   })
-}
+  return true
+
+}return false};
 
 module.exports = { setTokenCookie, restoreUser, requireAuth, isOwner };

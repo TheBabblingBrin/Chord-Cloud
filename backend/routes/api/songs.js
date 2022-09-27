@@ -110,7 +110,7 @@ router.get('/:songId', async (req, res, next) =>{
   })
   if(!song){
     res.statusCode = 404
-    res.json({
+    return res.json({
       "message": "Song couldn't be found",
       "statusCode": 404
     })
@@ -119,11 +119,22 @@ router.get('/:songId', async (req, res, next) =>{
 })
 
 //Edit a song by id
-router.put('/:songId', requireAuth, async (req, res, next) =>{
+router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
   const {title, description, url, imageUrl, albumId} = req.body
   const userId = req.user.id
 
+
   const song = await Song.findByPk(req.params.songId)
+  if(!song){
+    res.statusCode = 404
+    return res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
+  if(isOwner(res, userId, song.userId)){
+    return
+  }
   await song.update({title, description, url, imageUrl, albumId, userId})
   res.json(song)
 } )
@@ -132,7 +143,16 @@ router.put('/:songId', requireAuth, async (req, res, next) =>{
 router.post('/', validateSong, requireAuth, async (req, res, next) =>{
   const {title, description, url, imageUrl, albumId} = req.body
   const userId = req.user.id
-  const song = await Song.create({userId,albumId, title, description, url, imageUrl})
+  const album = await Album.findByPk(albumId)
+  if(!album && albumId !== null) {
+    res.statusCode = 404
+    res.json(   {
+      "message": "Album couldn't be found",
+      "statusCode": 404
+    })
+  }
+  const song = await Song.create({userId, albumId, title, description, url, imageUrl})
+  res.statusCode = 201
   res.json(song)
 })
 ////COMMENTS
@@ -170,7 +190,10 @@ router.delete('/:songId', requireAuth, async (req, res, next)=>{
   const userId = req.user.id
   const songId = req.params.songId
   const song = await Song.findByPk(songId)
-  if(song.id != userId) isOwner(res);
+  if(isOwner(res, userId, song.userId)){
+    return
+  }
+
   if(song){
     song.destroy()
     res.json({
