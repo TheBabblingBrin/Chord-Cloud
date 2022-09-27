@@ -7,12 +7,48 @@ const { Song, User, Album, Comment } = require('../../db/models');
 
 //All songs
 router.get('/', async (req, res, next) =>{
+  let errors = {}
+  let { page, size , createdAt, title} = req.query
+    page = parseInt(page)
+    size = parseInt(size)
+    Number.isInteger(page) ? null : page = 1;
+    Number.isInteger(size) ? null : size = 20;
+
+    page > 10?
+      errors.page = "Page must be less than or equal to 10":null;
+    page < 1?
+      errors.page = "Page must be less than or equal to 1":null;
+
+    size > 20?
+      errors.size = "Size must be less than or equal to 10":null;
+    size < 1?
+      errors.size = "Size must be less than or equal to 1":null;
+
+
+  createdAt && typeof createdAt !== 'string'? errors.createdAt = "CreatedAt is invalid":null;
+  title && typeof title !== 'string'? errors.title = 'Title is invalid':null;
+  if(Object.values(errors).length) {
+    res.statusCode = 400
+    res.json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                errors})
+  }
+
+  let pagination = {}
+    pagination.limit = size
+    pagination.offset = size * (page - 1)
+  let where = {}
+   createdAt? where.createdAt = createdAt:null;
+   title? where.title = title:null;
   const songs = await Song.findAll({
     include:{
       model: User
-    }
+    },
+    where,
+    ...pagination
   })
-  res.json({Songs: songs})
+  res.json({Songs: songs, page, size})
 })
 
 //Songs by current user
