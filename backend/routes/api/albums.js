@@ -93,7 +93,10 @@ router.delete('/:albumId', requireAuth, async (req, res, next)=>{
     return
   }
   if(album){
-    album.destroy()
+    if(isOwner(res, userId, album.userId)){
+      return
+    }
+    await album.destroy()
     res.json({
       "message": "Successfully deleted",
       "statusCode": 200

@@ -141,12 +141,12 @@ router.delete('/:playlistId', requireAuth, async (req, res, next)=>{
   const playlist = await Playlist.findByPk(playlistId)
 
   const userId = req.user.id
-  if(isOwner(res, userId, playlist.userId)){
-    return
-  }
-  
+
   if(playlist){
-    playlist.destroy()
+    if(isOwner(res, userId, playlist.userId)){
+      return
+    }
+    await playlist.destroy()
     res.json({
       "message": "Successfully deleted",
       "statusCode": 200
