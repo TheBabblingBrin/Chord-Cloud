@@ -22,7 +22,8 @@ router.get('/:artistId', async (req, res, next)=>{
                     include:[
                       [sequelize.fn('COUNT', sequelize.col('Songs.userId')), 'totalSongs'],
                       [sequelize.fn('COUNT', sequelize.col('Albums.userId')), 'totalAlbums']
-                    ]
+                    ],
+                    group:['User.id']
                   }
     })
 
