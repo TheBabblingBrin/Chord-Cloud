@@ -82,26 +82,6 @@ router.get('/current', requireAuth, async (req, res, next) =>{
   res.json({Songs: songs})
 })
 
-// //Songs by Artist ID
-// router.get('/artist/:artistId/songs', async (req, res, next) =>{
-//   const artist = await User.findByPk(req.params.artistId)
-//   console.log(artist)
-//   if(artist){
-//     res.statusCode = 404
-//     res.json(  {
-//       "message": "Artist couldn't be found",
-//       "statusCode": 404
-//     })
-//   }
-//   const songs = await Song.findAll({
-//     where:{
-//       userId: req.params.artistId
-//     }
-//   })
-
-//   res.json({Songs: songs})
-// })
-
 //GET song by ID
 router.get('/:songId', async (req, res, next) =>{
   const song = await Song.findByPk(req.params.songId, {
