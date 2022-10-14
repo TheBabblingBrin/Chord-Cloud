@@ -64,7 +64,6 @@ router.get(
   restoreUser,
   // requireAuth,
   (req, res) => {
-    console.log('api/sessions')
     const { user } = req;
     if (user) {
       return res.json(
