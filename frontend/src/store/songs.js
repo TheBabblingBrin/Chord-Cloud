@@ -1,11 +1,11 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD = 'songs/LOAD';
+const ADD_ONE = 'songs/ADD_ONE'
 
 ///HELPER FUNCTIONS///
 export const getAllSongs = (state) => Object.values(state.songs);
-export const getSongById = (id) => (state) => state.songs[id];
-
+export const getSongById = (state) => (id) => state.songs
 
 ///ACTION CREATORS///
 const load = list => ({
@@ -13,6 +13,10 @@ const load = list => ({
   list
 });
 
+const addOne = song => ({
+  type: ADD_ONE,
+  song
+})
 
 ///thunks///
 export const loadSongs = () => async dispatch => {
@@ -21,16 +25,41 @@ export const loadSongs = () => async dispatch => {
   if (response.ok) {
     const list = await response.json();
     dispatch(load(list));
+    return list
   }
 };
+
+export const getOneSong = (songId) => async dispatch => {
+  const response = await csrfFetch(`/api/songs/${songId}`);
+
+  if (response.ok) {
+    const song = await response.json();
+    dispatch(addOne(song));
+    return song
+  }
+};
+
 const initialState = {};
 
 const songsReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case LOAD:
      const allSongs = normalizeArray(action.list.Songs);
-     return {
-      ...state,...allSongs}
+     return {...state, ...allSongs}
+    case ADD_ONE:
+      if (!state[action.song.id]) {
+        newState = { ...state };
+        newState[action.song.id] = action.song;
+        return newState;
+        }
+        return {
+          ...state,
+          [action.song.id]: {
+            ...state[action.song.id],
+            ...action.song,
+          },
+        };
      default:
       return state;
     }

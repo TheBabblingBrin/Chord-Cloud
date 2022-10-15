@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/TheBabblingBrin/SoundCloud-clone#readme",
   "dependencies": {
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "redux-persist": "^6.0.0"
   }
 }
