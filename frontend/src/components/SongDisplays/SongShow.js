@@ -37,6 +37,8 @@ const handleDelete = async () =>{
 }
 
 let buttons = null
+if(user){
+
   song.userId === user.id?
   buttons =(
     <div>
@@ -48,6 +50,7 @@ let buttons = null
         >Update</button>
     </div>)
   : buttons = null;
+}
 
 
 let content = null
@@ -58,7 +61,7 @@ let content = null
     <br/>
     Title: {song.title}
     <br/>
-    Artist: {user.username}
+    Artist: {song.User.username}
     {buttons}
     {showUpdateSongForm?
         <SongForm

@@ -27,6 +27,8 @@ const handleDelete = async () =>{
 }
 
 let buttons = null
+if(user){
+
   comment.userId === user.id || song.userId === user.id ?
   buttons =(
     <div>
@@ -35,13 +37,13 @@ let buttons = null
       >Delete</button>
     </div>)
   : buttons = null;
-
+  }
 
 let content = null
  comment? content =(
 
   <section>
-    User: {user.username}
+    User: {comment.User.username}
     <br/>
     {comment.body}
     <br/>
