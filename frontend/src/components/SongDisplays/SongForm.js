@@ -4,11 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import { updateSong, uploadSong } from '../../store/songs';
 
-const SongForm = ({songId, hideForm, formType = 'createSong'}) => {
+const SongForm = ({song, hideForm, formType = 'createSong'}) => {
   const dispatch = useDispatch()
   const history = useHistory();
-
-  const song = useSelector((state) => state.songs[songId]);
 
   const [title, setTitle] = useState(song? song.title: null);
   const [description, setDescription] = useState(song? song.description: null);

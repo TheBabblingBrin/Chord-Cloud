@@ -50,7 +50,7 @@ let content = null
     {buttons}
     {showUpdateSongForm?
         <SongForm
-        songId={song.id}
+        song={song}
         hideForm={() => setShowUpdateSongForm(!showUpdateSongForm)}
         formType={'editSong'}
         />:null}
