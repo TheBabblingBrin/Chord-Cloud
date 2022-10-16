@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     dispatch(loadSongs());
   }, [dispatch])
-  // const songs =  useSelector(getAllSongs)
+  
   return (
     <>
       <Navigation isLoaded={isLoaded} />

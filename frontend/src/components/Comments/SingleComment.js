@@ -8,13 +8,13 @@ import { removeComment } from '../../store/comments';
 
 
 
-
-
 const SingleComment =  ({comment}) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const params = useParams()
+  const {songId} = params
   const user = useSelector((state) => state.session.user)
-
+  const song = useSelector((state) => state.songs[songId])
 
   if (!comment || !comment.id) {
     return null;
@@ -27,15 +27,12 @@ const handleDelete = async () =>{
 }
 
 let buttons = null
-  comment.User.username === user.username?
+  comment.userId === user.id || song.userId === user.id ?
   buttons =(
     <div>
       <button
         onClick={()=> handleDelete()}
       >Delete</button>
-      <button
-        // onClick={()=> setShowUpdateSongForm(!showUpdateSongForm)}
-        >Update</button>
     </div>)
   : buttons = null;
 
@@ -44,19 +41,12 @@ let content = null
  comment? content =(
 
   <section>
-    User: {comment.User.username}
+    User: {user.username}
     <br/>
     {comment.body}
     <br/>
     {comment.createdAt}
     {buttons}
-    {/* {showUpdateSongForm?
-        <SongForm
-        song={song}
-        hideForm={() => setShowUpdateSongForm(!showUpdateSongForm)}
-        formType={'editSong'}
-        />:null} */}
-
       <br/>
   </section>
 ):

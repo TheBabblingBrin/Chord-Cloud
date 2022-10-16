@@ -11,22 +11,25 @@ import SingleComment from './SingleComment';
 const CommentsIndex= ({songId}) => {
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(loadCommentsBySongId(songId));
+  }, [dispatch, songId])
 
-  const comments = dispatch(loadCommentsBySongId(songId));
-  console.log(comments)
+  const comments = useSelector((state)=> Object.values(state.comments));
+
   return (
     <section>
         <CommentForm />
-      {/* <ul>
+      <ul>
         {comments?
-          comments.comments.map(comment => (
+          comments.map(comment => (
             <SingleComment
               comment={comment}
               key={comment.id}
             />
           )):null
         }
-      </ul> */}
+      </ul>
     </section>
   );
 }
