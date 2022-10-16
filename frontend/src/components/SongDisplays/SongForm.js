@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
+
 
 import { updateSong, uploadSong } from '../../store/songs';
 
-const SongForm = ({song, hideForm, formType = 'createSong'}) => {
+const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
@@ -36,8 +37,11 @@ const SongForm = ({song, hideForm, formType = 'createSong'}) => {
     let createdSong;
    formType === 'createSong'? createdSong = await dispatch(uploadSong(payload)): createdSong = await dispatch(updateSong(payload));
     if (createdSong) {
-      hideForm();
-      return history.push(`/songs/${createdSong.id}`);
+      if(formType === 'editSong'){
+        hideForm()
+      }
+       return history.push(`/songs/${createdSong.id}`);
+      // return <Redirect push to={`/songs/${createdSong.id}`} />
     }
   };
 

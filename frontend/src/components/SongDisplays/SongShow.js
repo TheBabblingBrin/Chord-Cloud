@@ -16,7 +16,7 @@ const SongShow =  () => {
 
   useEffect(() => {
     dispatch(getOneSong(songId));
-    dispatch(loadSongs())
+    dispatch(loadSongs)
   }, [dispatch, songId])
 
 
