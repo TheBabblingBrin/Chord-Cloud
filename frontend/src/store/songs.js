@@ -3,11 +3,11 @@ import { csrfFetch } from "./csrf";
 const LOAD = 'songs/LOAD';
 const ADD_ONE = 'songs/ADD_ONE'
 
-///HELPER FUNCTIONS///
+/****************///HELPER FUNCTIONS//*****************/
 export const getAllSongs = (state) => Object.values(state.songs);
 export const getSongById = (state) => (id) => state.songs
 
-///ACTION CREATORS///
+/*************///ACTION CREATORS//******************/
 const load = list => ({
   type: LOAD,
   list
@@ -18,7 +18,7 @@ const addOne = song => ({
   song
 })
 
-///thunks///
+/*******///THUNKS//***************/
 export const loadSongs = () => async dispatch => {
   const response = await csrfFetch(`/api/songs`);
 
@@ -29,6 +29,7 @@ export const loadSongs = () => async dispatch => {
   }
 };
 
+//GET SONG
 export const getOneSong = (songId) => async dispatch => {
   const response = await csrfFetch(`/api/songs/${songId}`);
 
@@ -39,18 +40,48 @@ export const getOneSong = (songId) => async dispatch => {
   }
 };
 
+//CREATE SONG
+export const uploadSong = (song) => async dispatch => {
+  const response = await csrfFetch('/api/songs', {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(song),
+  });
+  if (response.ok) {
+    const song = await response.json();
+    dispatch(addOne(song));
+    return song
+  }
+
+}
+
+///UPDATE SONG
+export const updateSong = (song) => async dispatch => {
+  const response = await csrfFetch(`/api/songs/${song.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(song),
+  });
+  if (response.ok) {
+    const song = await response.json();
+    dispatch(addOne(song));
+    return song
+  }
+}
+
 const initialState = {};
 
 const songsReducer = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case LOAD:
      const allSongs = normalizeArray(action.list.Songs);
      return {...state, ...allSongs}
     case ADD_ONE:
       if (!state[action.song.id]) {
-        newState = { ...state };
-        newState[action.song.id] = action.song;
+       const newState = {
+        ...state,
+        [action.song.id]: action.song
+        };
         return newState;
         }
         return {

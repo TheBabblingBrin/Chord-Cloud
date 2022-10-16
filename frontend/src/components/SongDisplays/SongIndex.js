@@ -24,7 +24,7 @@ const SongsIndex = () => {
           ))
         }
       </ul>
-      <Link to="/songs/new">Add New Song</Link>
+      <Link to="/songs/upload">Upload Your Own</Link>
     </section>
   );
 }
