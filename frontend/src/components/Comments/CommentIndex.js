@@ -10,12 +10,12 @@ import SingleComment from './SingleComment';
 
 const CommentsIndex= ({songId}) => {
   const dispatch = useDispatch()
+  const comments = useSelector((state)=> Object.values(state.comments));
 
   useEffect(() => {
     dispatch(loadCommentsBySongId(songId));
-  }, [dispatch, songId])
+  }, [dispatch, comments.length])
 
-  const comments = useSelector((state)=> Object.values(state.comments));
 
   return (
     <section>
@@ -24,6 +24,7 @@ const CommentsIndex= ({songId}) => {
         {comments?
           comments.map(comment => (
             <SingleComment
+
               comment={comment}
               key={comment.id}
             />

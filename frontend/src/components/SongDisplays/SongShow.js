@@ -18,15 +18,15 @@ const SongShow =  () => {
   const song = useSelector((state) => state.songs[songId]);
   const user = useSelector((state) => state.session.user)
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
-
+  const songs = useSelector((state) => state.songs);
   useEffect(() => {
     dispatch(getOneSong(songId));
 
-  }, [dispatch])
+  }, [dispatch, songs.length])
 
 
 
-  if (!song || !song.id) {
+  if (!song.User) {
     return null;
   }
 const handleDelete = async () =>{

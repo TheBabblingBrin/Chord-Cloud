@@ -16,15 +16,17 @@ const SingleComment =  ({comment}) => {
   const user = useSelector((state) => state.session.user)
   const song = useSelector((state) => state.songs[songId])
 
-  if (!comment || !comment.id) {
+  if (!comment.User) {
     return null;
   }
+
 const handleDelete = async () =>{
   const deleted = await dispatch(removeComment(comment.id))
   if(deleted){
     return history.push(`/songs/${comment.songId}`)
   }
 }
+
 
 let buttons = null
 if(user){
