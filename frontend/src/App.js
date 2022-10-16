@@ -9,6 +9,7 @@ import SongsIndex from "./components/SongDisplays/SongIndex";
 import { loadSongs, getAllSongs } from "./store/songs";
 import SongShow from "./components/SongDisplays/SongShow";
 import SongForm from "./components/SongDisplays/SongForm";
+import Player from "./components/AudioPlayer";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
   useEffect(() => {
     dispatch(loadSongs());
   }, [dispatch])
-  
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -31,8 +32,10 @@ function App() {
           <Route exact path="/" component={SongsIndex} />
           <Route path="/songs/upload"  component={SongForm}/>
           <Route path="/songs/:songId"  component={SongShow}/>
+
         </Switch>
       )}
+      <Player />
     </>
   );
 }
