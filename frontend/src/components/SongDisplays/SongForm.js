@@ -9,11 +9,12 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const [title, setTitle] = useState(song? song.title: null);
-  const [description, setDescription] = useState(song? song.description: null);
+  const [title, setTitle] = useState(song? song.title:null );
+  const [description, setDescription] = useState(song? song.description:null );
   const [url, setUrl] = useState(song? song.url: null);
-  const [imageUrl, setImage] = useState(song? song.imageUrl: null);
+  const [imageUrl, setImage] = useState(song? song.imageUrl:null );
   const [albumId, setAlbumId] = useState(song? song.albumId: null);
+
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
@@ -21,6 +22,19 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
   const updateImage = (e) => setImage(e.target.value);
   const updateAlbumId = (e) => setAlbumId(e.target.value);
 
+  const user = useSelector(state => state.session.user)
+  let demoSong = null
+  if(user.id ===1){
+    demoSong = (<button type="button"
+    onClick={()=>{
+      setTitle('test song 1');
+      setDescription('dev test');
+      setImage('https://res.cloudinary.com/ddmb8mrlb/image/upload/v1665800701/imageUrl/maxresdefault_hjogtz.jpg');
+      setUrl('https://res.cloudinary.com/ddmb8mrlb/video/upload/v1665799036/audioUrl/BRAD_MEHLDAU_When_It_Rains_odfnzx.mp4');
+      setAlbumId(1)
+    }
+    }>Demo Song</button>)
+  }
 
 
   const handleSubmit = async (e) => {
@@ -92,6 +106,7 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
         />
         <button type="submit">{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
+        {demoSong}
       </form>
     </section>
   );
