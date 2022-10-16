@@ -68,7 +68,7 @@ let content = null
         />:null}
 
       <br/>
-    <CommentsIndex />
+    <CommentsIndex songId={song.id} />
     <Link to="/">Back to Songs Index</Link>
   </section>
 ):

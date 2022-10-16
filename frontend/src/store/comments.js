@@ -81,7 +81,7 @@ const initialState = {};
 const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
-     const allComments = normalizeArray(action.list.comments);
+     const allComments = normalizeArray(action.list.Comments);
      return {...state, ...allComments}
     case ADD_ONE:
       if (!state[action.comment.id]) {
