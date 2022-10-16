@@ -16,13 +16,14 @@ const CommentsIndex= ({songId}) => {
     dispatch(loadCommentsBySongId(songId));
   }, [dispatch, comments.length])
 
+  const songComments = comments.filter(comment => comment.songId == songId)
 
   return (
     <section>
         <CommentForm />
       <ul>
         {comments?
-          comments.map(comment => (
+          songComments.map(comment => (
             <SingleComment
 
               comment={comment}
