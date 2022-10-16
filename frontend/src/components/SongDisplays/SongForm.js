@@ -47,7 +47,11 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    hideForm();
+    if(formType === 'editSong'){
+      hideForm()
+    }else{
+      return history.push(`/`);
+    }
   };
 
   return (
