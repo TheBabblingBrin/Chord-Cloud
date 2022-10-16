@@ -7,6 +7,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
 import SongForm from './SongForm';
+import CommentsIndex from '../Comments/CommentIndex';
 
 
 const SongShow =  () => {
@@ -17,8 +18,6 @@ const SongShow =  () => {
   const song = useSelector((state) => state.songs[songId]);
   const user = useSelector((state) => state.session.user)
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
-  const [editSongId, setEditSongId] = useState(null);
-  const [authorized, setAuthorized] = useState(false)
 
   useEffect(() => {
     dispatch(getOneSong(songId));
@@ -69,6 +68,7 @@ let content = null
         />:null}
 
       <br/>
+    <CommentsIndex />
     <Link to="/">Back to Songs Index</Link>
   </section>
 ):
