@@ -1,12 +1,18 @@
 import { Link, useParams} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react";
-import { getOneSong, getSongById, loadSongs} from '../../store/songs';
+import { useHistory, Redirect } from 'react-router-dom';
+
+
+
+import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
 import SongForm from './SongForm';
 
 
 const SongShow =  () => {
   const dispatch = useDispatch()
+  const history = useHistory();
+
   const { songId } = useParams();
   const song = useSelector((state) => state.songs[songId]);
   const user = useSelector((state) => state.session.user)
@@ -24,13 +30,20 @@ const SongShow =  () => {
   if (!song || !song.id) {
     return null;
   }
-
+const handleDelete = async () =>{
+  const deleted = await dispatch(removeSong(song.id))
+  if(deleted){
+    return history.push('/')
+  }
+}
 
 let buttons = null
   song.User.username === user.username?
   buttons =(
     <div>
-      <button>Delete</button>
+      <button
+        onClick={()=> handleDelete()}
+      >Delete</button>
       <button
         onClick={()=> setShowUpdateSongForm(!showUpdateSongForm)}
         >Update</button>

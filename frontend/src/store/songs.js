@@ -60,7 +60,7 @@ export const uploadSong = (song) => async dispatch => {
 };
 
 export const removeSong = (songId) => async dispatch => {
-  const response = await fetch(`/api/songs/${songId}`, {
+  const response = await csrfFetch(`/api/songs/${songId}`, {
     method: 'DELETE'
   });
 
