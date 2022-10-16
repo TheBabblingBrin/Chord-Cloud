@@ -30,10 +30,11 @@ const SongShow =  () => {
     return null;
   }
 const handleDelete = async () =>{
+  history.push('/')
   const deleted = await dispatch(removeSong(song.id))
-  if(deleted){
-    return history.push('/')
-  }
+  // if(deleted){
+  //   return
+  // }
 }
 
 let buttons = null
