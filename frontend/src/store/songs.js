@@ -94,10 +94,12 @@ const songsReducer = (state = initialState, action) => {
      return {...state, ...allSongs}
     case ADD_ONE:
       if (!state[action.song.id]) {
+        console.log('imade it')
        const newState = {
         ...state,
         [action.song.id]: action.song
         };
+        console.log('newstate_______________',newState)
         return newState;
         }
         return {

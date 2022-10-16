@@ -17,7 +17,6 @@ const CommentsIndex= ({songId}) => {
 
   const comments = useSelector((state)=> Object.values(state.comments));
 
-  console.log('comments', comments)
   return (
     <section>
         <CommentForm />

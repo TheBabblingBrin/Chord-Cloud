@@ -40,7 +40,8 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
       if(formType === 'editSong'){
         hideForm()
       }
-       return history.push(`/songs/${createdSong.id}`);
+       history.push(`/songs/${createdSong.id}`);
+
       // return <Redirect push to={`/songs/${createdSong.id}`} />
     }
   };

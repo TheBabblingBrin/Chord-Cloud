@@ -21,8 +21,8 @@ const SongShow =  () => {
 
   useEffect(() => {
     dispatch(getOneSong(songId));
-    dispatch(loadSongs)
-  }, [dispatch, songId])
+
+  }, [dispatch])
 
 
 
@@ -37,7 +37,7 @@ const handleDelete = async () =>{
 }
 
 let buttons = null
-  song.User.username === user.username?
+  song.userId === user.id?
   buttons =(
     <div>
       <button
@@ -58,7 +58,7 @@ let content = null
     <br/>
     Title: {song.title}
     <br/>
-    Artist: {song.User.username}
+    Artist: {user.username}
     {buttons}
     {showUpdateSongForm?
         <SongForm
