@@ -5,7 +5,7 @@
 
 ## A SoundCloud Clone
 Welcome to the Chord-Cloud wiki! 
-chordCloud is a full stack application replicating the style and functionality of SoundCloud. Create or browse new songs, mixes and more! Visit the [live site](https://dashboard.heroku.com/apps/chord-cloud) here!
+chordCloud is a full stack application replicating the style and functionality of SoundCloud. Create or browse new songs, mixes and more! Visit the [live site](https://chord-cloud.herokuapp.com/) here!
 
 
 ***
