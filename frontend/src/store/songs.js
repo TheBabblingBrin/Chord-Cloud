@@ -110,24 +110,20 @@ const songsReducer = (state = initialState, action) => {
         ...state,
         allSongs:{[action.song.id]: action.song}
         };
-        console.log('newstate_______________',newState)
         return newState;
         }
-        return {
-          ...state,
-              allSongs:{[action.song.id]: {
-                ...state[action.song.id],
-                ...action.song,}
-          },
-        };
+        const updatedState = { ...state, allSongs: {...state.allSongs}}
+        updatedState.allSongs[action.song.id] = action.song
+        return updatedState
     case REMOVE:
       const deleteState = { ...state };
       delete deleteState.allSongs[action.songId];
       return deleteState;
     case SET_CURRENT:
-      const playState = {...state, currentSong: action.song}
+      let playState = {...state, currentSong: action.song}
       if(state.currentSong && state.currentSong.id === action.song.id){
-        playState.currentSong.playing = !playState.currentSong.playing
+        playState= {...state, currentSong:{ ...action.song, playing:!state.currentSong.playing}}
+
       }else {
         playState.currentSong.playing = true
       }
