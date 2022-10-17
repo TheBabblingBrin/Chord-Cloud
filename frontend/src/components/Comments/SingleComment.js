@@ -14,7 +14,7 @@ const SingleComment =  ({comment}) => {
   const params = useParams()
   const {songId} = params
   const user = useSelector((state) => state.session.user)
-  const song = useSelector((state) => state.songs[songId])
+  const song = useSelector((state) => state.songs.allSongs[songId])
 
   if (!comment.User) {
     return null;
