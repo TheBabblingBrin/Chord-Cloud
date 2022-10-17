@@ -6,8 +6,8 @@ const REMOVE = 'songs/REMOVE'
 const SET_CURRENT = 'songs/SET_CURRENT'
 
 /****************///HELPER FUNCTIONS//*****************/
-export const getAllSongs = (state) => Object.values(state.songs);
-export const getSongById = (state) => (id) => state.songs
+export const getAllSongs = (state) => Object.values(state.songs.allSongs);
+export const getSongById = (state) => (id) => state.songs.allSongs
 
 /*************///ACTION CREATORS//******************/
 const load = list => ({
@@ -93,33 +93,36 @@ export const updateSong = (song) => async dispatch => {
 
 
 
-const initialState = {};
+const initialState = {
+  allSongs: {},
+  currentSong: {}
+};
 
 const songsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
      const allSongs = normalizeArray(action.list.Songs);
-     return {...state, ...allSongs}
+     return {...state, allSongs:{...allSongs}}
     case ADD_ONE:
-      if (!state[action.song.id]) {
+      if (!state.allSongs[action.song.id]) {
         console.log('imade it')
        const newState = {
         ...state,
-        [action.song.id]: action.song
+        allSongs:{[action.song.id]: action.song}
         };
         console.log('newstate_______________',newState)
         return newState;
         }
         return {
           ...state,
-          [action.song.id]: {
-            ...state[action.song.id],
-            ...action.song,
+              allSongs:{[action.song.id]: {
+                ...state[action.song.id],
+                ...action.song,}
           },
         };
     case REMOVE:
       const deleteState = { ...state };
-      delete deleteState[action.songId];
+      delete deleteState.allSongs[action.songId];
       return deleteState;
     case SET_CURRENT:
       const playState = {...state, currentSong: action.song}

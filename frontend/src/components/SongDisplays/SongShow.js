@@ -16,15 +16,15 @@ const SongShow =  () => {
   const dispatch = useDispatch()
   const history = useHistory();
   const { songId } = useParams();
-  const song = useSelector((state) => state.songs[songId]);
+  const song = useSelector((state) => state.songs.allSongs[songId]);
   const user = useSelector((state) => state.session.user)
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
-  const songs = useSelector((state) => state.songs);
+  const songs = useSelector((state) => state.songs.allSongs);
   useEffect(() => {
     dispatch(loadSongs());
     dispatch(loadCommentsBySongId(songId))
 
-  }, [dispatch, songs.length])
+  }, [dispatch, songs.length, song])
 
 
 
