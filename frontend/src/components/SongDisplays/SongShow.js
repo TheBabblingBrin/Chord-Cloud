@@ -24,7 +24,7 @@ const SongShow =  () => {
     dispatch(loadSongs());
     dispatch(loadCommentsBySongId(songId))
 
-  }, [dispatch, songs.length, song])
+  }, [dispatch, songs.length])
 
 
 

@@ -1,4 +1,14 @@
+.song-preview{
+  display: flex;
+  flex-direction: row;
+  max-width: 223px;
+  overflow: hidden;
+}
+
 .song-img-preview{
+
   max-width: 30px;
   max-height: 30px;
+
 }
+

@@ -8,6 +8,7 @@ footer{
   height: 49px;
   left:0;
   margin: auto;
+  justify-content: center;
 
 }
 
@@ -24,5 +25,5 @@ body{
 .rhap_container {
   background-color: transparent !important;
   box-shadow: none !important;
-  width: 70%;
+  width: 70% !important;
 }
