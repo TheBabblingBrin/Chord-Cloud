@@ -14,23 +14,23 @@ import { loadCommentsBySongId } from '../../store/comments';
 const SongShow =  () => {
   const dispatch = useDispatch()
   const history = useHistory();
-
   const { songId } = useParams();
   const song = useSelector((state) => state.songs[songId]);
   const user = useSelector((state) => state.session.user)
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
   const songs = useSelector((state) => state.songs);
-  useEffect(() => {
-    dispatch(loadSongs());
-    dispatch(loadCommentsBySongId(songId))
+  // useEffect(() => {
+  //   dispatch(loadSongs());
+  //   dispatch(loadCommentsBySongId(songId))
 
-  }, [dispatch, songs.length])
+  // }, [dispatch, songs.length])
 
 
 
-  if (!song.User) {
-    return null;
-  }
+  // if (!song.User) {
+  //   return null;
+  // }
+
 const handleDelete = async () =>{
   history.push('/')
   const deleted = await dispatch(removeSong(song.id))
