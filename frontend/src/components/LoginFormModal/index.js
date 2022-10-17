@@ -11,7 +11,7 @@ function LoginFormModal() {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div className='modal-box'>
       <button onClick={() => setShowModal(true)}>Log In</button>
       <button onClick={() => dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))}>Demo User</button>
       {showModal && (
@@ -19,7 +19,7 @@ function LoginFormModal() {
           <LoginForm />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

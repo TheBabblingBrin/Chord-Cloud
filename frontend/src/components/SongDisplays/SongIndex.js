@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getAllSongs, loadSongs } from '../../store/songs';
 import { useState, useEffect } from "react";
-
+import './SongDisplays.css'
 
 import SongIndexItem from './SongIndexItem';
 
@@ -13,8 +13,12 @@ const SongsIndex = () => {
 
   const songs = useSelector(getAllSongs);
   return (
-    <section>
-      <ul>
+    <div className='trending-tracks'>
+      <div className='trending-tracks-title'>
+        <h2>Hear what's trending for free in the chordCloud community</h2>
+      </div>
+      <div className='splash-box'>
+
         {
           songs.map(song => (
             <SongIndexItem
@@ -23,9 +27,9 @@ const SongsIndex = () => {
             />
           ))
         }
-      </ul>
+      </div>
       <Link to="/songs/upload">Upload Your Own</Link>
-    </section>
+    </div>
   );
 }
 

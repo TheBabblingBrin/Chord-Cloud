@@ -1,0 +1,28 @@
+.trending-tracks{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1180px;
+  margin:auto;
+  text-align: center;
+}
+
+.trending-tracks-title{
+  text-align: center;
+  width: 100%;
+
+}
+
+.splash-badge{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.splash-badge input{
+  height: 153.31px;
+  width: 153.31px;
+}
+
+.splash-box {
+  display: flex;
+  flex-wrap: wrap;
+}

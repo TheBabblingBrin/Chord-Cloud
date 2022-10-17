@@ -1,0 +1,21 @@
+.nav-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 46px;
+  max-width: 1180px;
+  border: 1px solid black;
+}
+
+.nav-bar *{
+  z-index: 1;
+}
+
+.logo {
+  width: 186px;
+}
+
+.logo input{
+  height: 100%;
+
+}

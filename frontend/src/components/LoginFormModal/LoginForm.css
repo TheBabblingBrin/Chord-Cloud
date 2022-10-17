@@ -1,0 +1,11 @@
+.modal-box{
+  display: flex;
+  width: 425px;
+  height: 525px;
+  padding: 25px;
+}
+
+.modal-forms{
+  max-width: 400px;
+  max-height: 500px;
+}
