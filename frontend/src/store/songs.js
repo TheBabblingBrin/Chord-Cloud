@@ -95,7 +95,7 @@ export const updateSong = (song) => async dispatch => {
 
 const initialState = {
   allSongs: {},
-  currentSong: {}
+  currentSong: {playing:true}
 };
 
 const songsReducer = (state = initialState, action) => {
@@ -126,6 +126,11 @@ const songsReducer = (state = initialState, action) => {
       return deleteState;
     case SET_CURRENT:
       const playState = {...state, currentSong: action.song}
+      if(state.currentSong && state.currentSong.id === action.song.id){
+        playState.currentSong.playing = !playState.currentSong.playing
+      }else {
+        playState.currentSong.playing = true
+      }
       return playState
      default:
       return state;

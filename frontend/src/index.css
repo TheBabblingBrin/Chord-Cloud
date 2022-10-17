@@ -8,7 +8,11 @@ footer{
   height: 49px;
   left:0;
   margin: auto;
-
+  justify-content: center;
+  background-color: #3C4047 ;
+  font-size: 12px;
+  font-family: 'Lucida Grande','Lucida Sans', 'Lucida Sans Regular',  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:#FCFCF4;
 }
 
 html,
@@ -24,5 +28,17 @@ body{
 .rhap_container {
   background-color: transparent !important;
   box-shadow: none !important;
-  width: 70%;
+  width: 70% !important;
+}
+
+.rhap_container svg,
+.rhap_container div,
+.rhap_volume-bar-area,
+#rhap_current-time,
+.rhap_total{
+  color:#FCFCF4 ;
+}
+
+.rhap_progress-filled{
+  background-color: #FCFCF4  !important;
 }

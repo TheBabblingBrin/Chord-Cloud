@@ -1,4 +1,27 @@
+.song-preview{
+  display: flex;
+  flex-direction: row;
+  max-width: 223px;
+  overflow: hidden;
+}
+
 .song-img-preview{
+  align-self: center;
+  margin-right: 12px;
   max-width: 30px;
   max-height: 30px;
+
+}
+
+.song-preview-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.song-preview-details span{
+  margin-top: 3px;
+}
+
+.song-artist-preview{
+  opacity: .7;
 }

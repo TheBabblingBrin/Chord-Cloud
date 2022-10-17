@@ -31,7 +31,7 @@ function Navigation({ isLoaded }){
       <div className='logo'>
         <input
         type='image'
-        src='https://i.postimg.cc/1tcyt4wx/chord-Cloud-Full-removebg-preview.png'
+        src='https://i.postimg.cc/Xq3MFwFN/chord-Cloud-Full-filled.png'
         alt='chordCloud logo'
         onClick={()=> history.push('/')}
         ></input>

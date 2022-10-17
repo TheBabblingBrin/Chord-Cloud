@@ -1,24 +1,44 @@
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect, useRef } from 'react'
 import './index.css'
 
 
 
 const Player = () => {
   const song = useSelector(state => state.songs.currentSong)
+  const playState = useSelector(state => state.songs.currentSong.playing)
+  const [source, changeSrc] = useState(null)
+
+  const player = useRef();
+
+  useEffect(() => {
+
+    changeSrc(song.url)
+      if(song.playing === true){
+        player.current.audio.current.play();
+      } else{
+        player.current.audio.current.pause();
+
+      }
+
+
+  }, [song, playState, source])
+
+
+
   return (
   <footer className='audio-footer'>
-    <AudioPlayer
+    <AudioPlayer ref={player}
       className='audio-player'
       showJumpControls={true}
       crossOrigin="anonymous"
       timeFormat={"mm:ss"}
       autoPlayAfterSrcChange={true}
       layout="horizontal-reverse"
-      src={song? song.url:null}
-      onPlay={e => console.log("onPlay")}
-      // other props here
+      src={source}
+      onPlay={e => console.log('playing')}
     />
     <div className='song-preview'>
 
@@ -27,9 +47,15 @@ const Player = () => {
       src={song.imageUrl}
 
     ></img>
-    
-    <div className='song-title-preview'></div>
-    <div className='song-artist-preview'></div>
+    <div className='song-preview-details'>
+
+      <span className='song-artist-preview'>
+        {song.User.username}
+      </span>
+      <span className='song-title-preview'>
+        {song.title}
+      </span>
+    </div>
     </div>
   </footer>
   )
