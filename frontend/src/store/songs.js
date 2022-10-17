@@ -125,9 +125,10 @@ const songsReducer = (state = initialState, action) => {
       delete deleteState.allSongs[action.songId];
       return deleteState;
     case SET_CURRENT:
-      const playState = {...state, currentSong: action.song}
+      let playState = {...state, currentSong: action.song}
       if(state.currentSong && state.currentSong.id === action.song.id){
-        playState.currentSong.playing = !playState.currentSong.playing
+        playState= {...state, currentSong:{ ...action.song, playing:!state.currentSong.playing}}
+
       }else {
         playState.currentSong.playing = true
       }

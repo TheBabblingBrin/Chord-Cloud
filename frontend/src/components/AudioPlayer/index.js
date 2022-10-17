@@ -10,7 +10,6 @@ const Player = () => {
   const song = useSelector(state => state.songs.currentSong)
   const playState = useSelector(state => state.songs.currentSong.playing)
   const [source, changeSrc] = useState(null)
-
   const player = useRef();
 
   useEffect(() => {
@@ -20,9 +19,7 @@ const Player = () => {
         player.current.audio.current.play();
       } else{
         player.current.audio.current.pause();
-
       }
-
 
   }, [song, playState, source])
 

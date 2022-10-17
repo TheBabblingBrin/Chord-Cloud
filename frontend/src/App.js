@@ -15,14 +15,14 @@ import Player from "./components/AudioPlayer";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const currentSong = useSelector(state => state.songs.currentSong)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(loadSongs());
-  }, [dispatch])
+  }, [dispatch, currentSong])
 
   return (
     <>
@@ -35,7 +35,7 @@ function App() {
 
         </Switch>
       )}
-      <Player />
+      {!!currentSong.id && (<Player song={currentSong}/>)}
     </>
   );
 }
