@@ -47,12 +47,15 @@ const Player = () => {
       src={song.imageUrl}
 
     ></img>
+    <div className='song-preview-details'>
 
-    <div className='song-artist-preview'>
-      {song.User.username}
-    <div className='song-title-preview'>{song.title}</div>
-      </div>
-
+      <span className='song-artist-preview'>
+        {song.User.username}
+      </span>
+      <span className='song-title-preview'>
+        {song.title}
+      </span>
+    </div>
     </div>
   </footer>
   )
