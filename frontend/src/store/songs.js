@@ -127,9 +127,9 @@ const songsReducer = (state = initialState, action) => {
     case SET_CURRENT:
       const playState = {...state, currentSong: action.song}
       if(state.currentSong && state.currentSong.id === action.song.id){
-        console.log(playState.currentSong.playing)
         playState.currentSong.playing = !playState.currentSong.playing
-        console.log(playState.currentSong.playing)
+      }else {
+        playState.currentSong.playing = true
       }
       return playState
      default:

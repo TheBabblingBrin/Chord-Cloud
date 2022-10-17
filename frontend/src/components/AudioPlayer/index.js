@@ -9,23 +9,22 @@ import './index.css'
 const Player = () => {
   const song = useSelector(state => state.songs.currentSong)
   const playState = useSelector(state => state.songs.currentSong.playing)
-
+  const [source, changeSrc] = useState(null)
 
   const player = useRef();
 
   useEffect(() => {
-    if(song){
 
+    changeSrc(song.url)
       if(song.playing === true){
         player.current.audio.current.play();
-
       } else{
         player.current.audio.current.pause();
 
       }
-    }
 
-  }, [song, playState])
+
+  }, [song, playState, source])
 
 
 
@@ -38,7 +37,7 @@ const Player = () => {
       timeFormat={"mm:ss"}
       autoPlayAfterSrcChange={true}
       layout="horizontal-reverse"
-      src={song? song.url:null}
+      src={source}
       onPlay={e => console.log('playing')}
     />
     <div className='song-preview'>
