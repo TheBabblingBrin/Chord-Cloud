@@ -23,6 +23,11 @@ const Player = () => {
 
   }, [song, playState, source])
 
+  if(!song || !song.id){
+    return (
+      <h2>LOADING</h2>
+    )
+  }
 
 
   return (

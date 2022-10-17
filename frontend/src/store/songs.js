@@ -110,16 +110,11 @@ const songsReducer = (state = initialState, action) => {
         ...state,
         allSongs:{[action.song.id]: action.song}
         };
-        console.log('newstate_______________',newState)
         return newState;
         }
-        return {
-          ...state,
-              allSongs:{[action.song.id]: {
-                ...state[action.song.id],
-                ...action.song,}
-          },
-        };
+        const updatedState = { ...state, allSongs: {...state.allSongs}}
+        updatedState.allSongs[action.song.id] = action.song
+        return updatedState
     case REMOVE:
       const deleteState = { ...state };
       delete deleteState.allSongs[action.songId];

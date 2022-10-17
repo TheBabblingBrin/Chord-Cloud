@@ -31,7 +31,7 @@ const handleDelete = async () =>{
 let buttons = null
 if(user){
 
-  comment.userId === user.id || song.userId === user.id ?
+  comment.userId === user.id?
   buttons =(
     <div>
       <button

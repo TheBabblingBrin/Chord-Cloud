@@ -20,24 +20,28 @@ const SongShow =  () => {
   const user = useSelector((state) => state.session.user)
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
   const songs = useSelector((state) => state.songs.allSongs);
+
   useEffect(() => {
-    dispatch(loadSongs());
     dispatch(loadCommentsBySongId(songId))
 
-  }, [dispatch, songs.length])
+  }, [dispatch, songs, song])
 
 
-
-  if (!song.User) {
-    return null;
+  if(!song || !song.User){
+    setTimeout(()=>{
+      dispatch(loadSongs())
+    },500)
+    return (
+      <h2>LOADING</h2>
+    )
   }
+
+
 
 const handleDelete = async () =>{
   history.push('/')
   const deleted = await dispatch(removeSong(song.id))
-  // if(deleted){
-  //   return
-  // }
+
 }
 
 let buttons = null
@@ -50,22 +54,26 @@ if(user){
         onClick={()=> handleDelete()}
       >Delete</button>
       <button
-        onClick={()=> setShowUpdateSongForm(!showUpdateSongForm)}
+        onClick={()=>{
+          dispatch(loadSongs())
+          setShowUpdateSongForm(!showUpdateSongForm)}
+        }
         >Update</button>
     </div>)
   : buttons = null;
 }
 
 
-let content = null
- song? content =(
+
+
+  return (
 
   <section>
     ID: {song.id}
     <br/>
     Title: {song.title}
     <br/>
-    Artist: {song.User.username}
+    Artist: {song?.User?.username}
     <PlayButton song={song}/>
     {buttons}
     {showUpdateSongForm?
@@ -78,13 +86,9 @@ let content = null
       <br/>
     <CommentsIndex songId={song.id} />
     <Link to="/">Back to Songs Index</Link>
-  </section>
-):
-  content = null
-;
+  </section>)
 
-  return (
-    content)
+
 }
 
 export default SongShow;
