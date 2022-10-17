@@ -5,13 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 const Player = () => {
-  const song = useSelector(state => state.songs)
-
+  const song = useSelector(state => state.songs.currentSong)
   return (
   <footer>
     <AudioPlayer
-      autoPlay
-      src={song[1].url}
+      // autoPlay
+      src={song? song.url:null}
       onPlay={e => console.log("onPlay")}
       // other props here
     />

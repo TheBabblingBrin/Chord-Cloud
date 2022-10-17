@@ -9,6 +9,7 @@ import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs
 import SongForm from './SongForm';
 import CommentsIndex from '../Comments/CommentIndex';
 import { loadCommentsBySongId } from '../../store/comments';
+import PlayButton from './PlayButton';
 
 
 const SongShow =  () => {
@@ -19,17 +20,17 @@ const SongShow =  () => {
   const user = useSelector((state) => state.session.user)
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
   const songs = useSelector((state) => state.songs);
-  // useEffect(() => {
-  //   dispatch(loadSongs());
-  //   dispatch(loadCommentsBySongId(songId))
+  useEffect(() => {
+    dispatch(loadSongs());
+    dispatch(loadCommentsBySongId(songId))
 
-  // }, [dispatch, songs.length])
+  }, [dispatch, songs.length])
 
 
 
-  // if (!song.User) {
-  //   return null;
-  // }
+  if (!song.User) {
+    return null;
+  }
 
 const handleDelete = async () =>{
   history.push('/')
@@ -65,6 +66,7 @@ let content = null
     Title: {song.title}
     <br/>
     Artist: {song.User.username}
+    <PlayButton song={song}/>
     {buttons}
     {showUpdateSongForm?
         <SongForm

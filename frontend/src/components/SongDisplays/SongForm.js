@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 
@@ -14,6 +14,8 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
   const [url, setUrl] = useState(song? song.url: null);
   const [imageUrl, setImage] = useState(song? song.imageUrl:null );
   const [albumId, setAlbumId] = useState(song? song.albumId: null);
+  const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setSubmitted] = useState(false)
 
 
   const updateTitle = (e) => setTitle(e.target.value);
@@ -23,6 +25,18 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
   const updateAlbumId = (e) => setAlbumId(e.target.value);
 
   const user = useSelector(state => state.session.user)
+
+  useEffect(() => {
+    if(hasSubmitted === true){
+
+      const errors = validate();
+
+      errors.length > 0? setErrors(errors): setErrors([])
+    }
+
+  },[title, url, imageUrl, setSubmitted])
+
+
   let demoSong = null
   if(user.id ===1){
     demoSong = (<button type="button"
@@ -36,9 +50,25 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
     }>Demo Song</button>)
   }
 
+  const validate = () => {
+    const validationerrors = [];
+    if(title.length <= 0) validationerrors.push('Please input a song title')
+    if(url.length <= 0) validationerrors.push('Please input an audio source url')
+    if(imageUrl.length <= 0) validationerrors.push('Please input an audio source url')
+
+    ///TODO Album ID ownership validations once Albums are implemented
+
+    return  validationerrors;
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true)
+    const errors = validate();
+
+    if (errors.length > 0) {return setErrors(errors);}
+
 
     const payload = {
       ...song,
@@ -51,12 +81,11 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
     let createdSong;
    formType === 'createSong'? createdSong = await dispatch(uploadSong(payload)): createdSong = await dispatch(updateSong(payload));
     if (createdSong) {
+      setSubmitted(false)
       if(formType === 'editSong'){
         hideForm()
       }
        history.push(`/songs/${createdSong.id}`);
-
-      // return <Redirect push to={`/songs/${createdSong.id}`} />
     }
   };
 
@@ -72,6 +101,13 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
   return (
     <section className=''>
       <form className='' onSubmit={handleSubmit}>
+      {hasSubmitted && errors.length > 0 && (
+                    <ul>
+                        {errors.map((error) => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+            )}
         <input
           type="text"
           placeholder="Title"
@@ -87,14 +123,12 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
         <input
           type="url"
           placeholder="Audio URL"
-          required
           value={url}
           onChange={updateUrl}
         />
          <input
           type="url"
           placeholder="Image URL"
-          required
           value={imageUrl}
           onChange={updateImage}
         />
@@ -104,7 +138,10 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
           value={albumId}
           onChange={updateAlbumId}
         />
-        <button type="submit">{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
+        <button
+          type="submit"
+          disabled={errors.length > 0}
+        >{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
         {demoSong}
       </form>
