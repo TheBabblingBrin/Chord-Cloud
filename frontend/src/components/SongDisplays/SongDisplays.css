@@ -1,3 +1,44 @@
+.play-button{
+  background-color: #3C4047;
+  border: 1px transparent solid;
+  border-radius: 99px;
+  align-self: center;
+  position: relative;
+  top: 100px;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.play-button:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+.play-button i{
+  color: #FCFCF4;
+  scale: 1.5;
+}
+
+/* .fa-circle-pause{
+  color: #FCFCF4;
+  scale:3;
+  z-index: 2;
+} */
+
+.hover-image:hover .play-button{
+  opacity: 1;
+}
+
+.hover-image{
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+}
+
+
 .trending-tracks{
   display: flex;
   flex-direction: column;
@@ -24,9 +65,10 @@
   margin: auto;
   /* align-items: center; */
 }
-.splash-badge input{
+.song-image{
   height: 153.31px;
   width: 153.31px;
+  margin:0;
 }
 .splash-badge *{
   font-size: 12px;
@@ -37,9 +79,9 @@
 
 .splash-box {
   display: grid;
-  grid-template-columns: repeat(5,200px);
+  grid-template-columns: repeat(6,175px);
   position: relative;
-  top: 500px;
+  top: 450px;
 
 }
 
