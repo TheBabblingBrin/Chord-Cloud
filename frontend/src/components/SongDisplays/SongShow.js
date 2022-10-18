@@ -19,9 +19,8 @@ const SongShow =  () => {
   const { songId } = useParams();
   const song = useSelector((state) => state.songs.allSongs[songId]);
   const user = useSelector((state) => state.session.user)
-  const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
   const songs = useSelector((state) => state.songs.allSongs);
-
+  const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
   useEffect(() => {
     dispatch(loadCommentsBySongId(songId))
     dispatch(getURL())
@@ -45,6 +44,7 @@ const handleDelete = async () =>{
 
 }
 
+let date = song.updatedAt.split('T')[0]
 let buttons = null
 if(user){
 
@@ -66,18 +66,29 @@ if(user){
 
 
 
-
   return (
 
   <div className='splash-page splash-page-other'>
-    <div className='song-details-banner'>
 
-    ID: {song.id}
-    <br/>
-    Title: {song.title}
-    <br/>
-    Artist: {song?.User?.username}
+    <div
+    className='song-details-banner'>
+    <div className='song-title-container'>
     <PlayButton song={song}/>
+    <div id="sound-title">
+      <span>
+      {song.title}
+      </span>
+      </div>
+    <div id="sound-artist">
+      <span>{song?.User?.username}</span>
+      </div>
+    </div>
+    <span id='song-updated-at'>Updated at {date}</span>
+    <input
+    className="sound-container-img"
+    type="image"
+    src={song.imageUrl}>
+    </input>
     {buttons}
     {showUpdateSongForm?
         <SongForm
@@ -87,6 +98,9 @@ if(user){
         />:null}
 
       <br/>
+    </div>
+    <div className='song-banner-bg'
+    style={{backgroundImage: `url(${song.imageUrl})`}}>
     </div>
     <CommentsIndex songId={song.id} />
     <Link to="/">Back to Songs Index</Link>

@@ -17,7 +17,7 @@
   height: 60px;
   width: 1240px;
   background-color: transparent ;
-  z-index: 2;
+  z-index: 3;
 }
 .nav-dark{
   background-color: #3C4047 !important;
@@ -26,7 +26,6 @@
   left: 0;
   width: 100vw;
   min-width: 1240px;
-  z-index: 1;
   border-top: 1px solid #FCFCF4;
 
 }
@@ -144,6 +143,7 @@
   width: 170px;
   height: 90px;
   justify-content: space-evenly;
+  z-index: 5;
 
 
 }
@@ -154,6 +154,7 @@
   flex-direction: row-reverse;
   width: 170px;
   height: fit-content;
+
 }
 
 .profile-dropdown button{
