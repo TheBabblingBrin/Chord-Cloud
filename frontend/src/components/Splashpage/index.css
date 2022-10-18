@@ -5,6 +5,11 @@
 
 }
 
+.splash-page-other{
+  position: relative;
+  top: 46px;
+}
+
 .search-div button{
   height: 46px;
   width: 170px;

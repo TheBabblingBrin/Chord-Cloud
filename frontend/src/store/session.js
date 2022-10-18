@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_URL = 'session/setURL'
 
 const setUser = (user) => {
   return {
@@ -15,6 +16,13 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+const setURL = (url) => {
+  return{
+    type: SET_URL,
+    url
+  };
+}
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -36,6 +44,8 @@ export const restoreUser = () => async dispatch => {
   dispatch(setUser(data));
   return response;
 };
+
+
 
 export const signup = (user) => async (dispatch) => {
   const { username, email, password, firstName, lastName } = user;
@@ -62,7 +72,14 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
   return response;
 };
-const initialState = { user: null };
+
+export const getURL =() => async (dispatch) => {
+    const url = await window.location.href
+    dispatch(setURL(url))
+    return url
+}
+
+const initialState = { user: null, url: null };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -74,6 +91,10 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case SET_URL:
+      newState = Object.assign({}, state);
+      newState.url = action.url
       return newState;
     default:
       return state;

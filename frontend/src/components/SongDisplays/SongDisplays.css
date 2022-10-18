@@ -14,17 +14,13 @@
 .play-button:hover{
   opacity: 1;
   cursor: pointer;
+  border-color:#FCFCF4;
 }
 .play-button i{
   color: #FCFCF4;
   scale: 1.5;
 }
 
-/* .fa-circle-pause{
-  color: #FCFCF4;
-  scale:3;
-  z-index: 2;
-} */
 
 .hover-image:hover .play-button{
   opacity: 1;

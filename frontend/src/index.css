@@ -28,6 +28,12 @@ body{
 
 }
 
+body button:hover,
+body link:hover{
+  cursor: pointer;
+}
+
+
 .rhap_container {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -48,6 +54,5 @@ body{
 
 #root{
   background-color: whitesmoke;
+  max-width: 1240px;
 }
-
-

@@ -10,6 +10,7 @@ import SongForm from '../SongFormModal/SongForm';
 import CommentsIndex from '../Comments/CommentIndex';
 import { loadCommentsBySongId } from '../../store/comments';
 import PlayButton from './PlayButton';
+import { getURL } from '../../store/session';
 
 
 const SongShow =  () => {
@@ -23,7 +24,7 @@ const SongShow =  () => {
 
   useEffect(() => {
     dispatch(loadCommentsBySongId(songId))
-
+    dispatch(getURL())
   }, [dispatch, songs, song])
 
 
@@ -49,7 +50,7 @@ if(user){
 
   song.userId === user.id?
   buttons =(
-    <div>
+    <div >
       <button
         onClick={(e)=> handleDelete()}
       >Delete</button>
@@ -68,7 +69,9 @@ if(user){
 
   return (
 
-  <section>
+  <div className='splash-page splash-page-other'>
+    <div className='song-details-banner'>
+
     ID: {song.id}
     <br/>
     Title: {song.title}
@@ -84,9 +87,10 @@ if(user){
         />:null}
 
       <br/>
+    </div>
     <CommentsIndex songId={song.id} />
     <Link to="/">Back to Songs Index</Link>
-  </section>)
+  </div>)
 
 
 }

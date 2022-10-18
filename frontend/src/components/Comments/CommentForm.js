@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from 'react-router-dom';
 
 import { createComment } from '../../store/comments';
@@ -10,8 +10,8 @@ const CommentForm = () => {
 
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
-
   const [hasSubmitted, setSubmitted] = useState(false)
+  const user = useSelector(state => state.session.User)
   useEffect(() => {
     if(hasSubmitted === true){
 
@@ -24,6 +24,7 @@ const CommentForm = () => {
 
   const validate = () => {
     const validationerrors = [];
+    if(!user) validationerrors.push('Please login to post a comment')
     if(body.length <= 0) validationerrors.push('Please input a comment before submission')
     return  validationerrors;
   }

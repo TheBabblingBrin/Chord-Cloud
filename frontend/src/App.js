@@ -19,10 +19,12 @@ function App() {
   const currentSong = useSelector(state => state.songs.currentSong)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.getURL());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(loadSongs());
+    dispatch(sessionActions.getURL())
   }, [dispatch, currentSong])
 
   return (

@@ -1,23 +1,74 @@
+.center{
+  position: fixed;
+  justify-content: flex-start;
+  height: 45px;
+  width: 1240px;
+  background-color: #3C4047 !important;
+}
+.center-splash{
+  background-color: transparent !important ;
+  position: absolute;
+}
 .nav-bar{
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-  justify-content: space-between;
+  justify-content: center;
   height: 60px;
-  max-width: 1240px;
+  width: 1240px;
   background-color: transparent ;
   z-index: 2;
 }
-.nav-bar2{
-  background-color: #3C4047;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  justify-content: space-between;
-  height: 60px;
-  max-width: 1240px;
-  z-index: 2;
+.nav-dark{
+  background-color: #3C4047 !important;
+  height: 46px;
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  min-width: 1240px;
+  z-index: 1;
+  border-top: 1px solid #FCFCF4;
+
 }
+.nav-dark > .center > .logo{
+  background-color: black;
+  position: relative;
+  top: 5px;
+  left: 0;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-top: -5px;
+
+}
+.nav-dark > .banner-buttons >
+.user-profile-options > .profile-button{
+  position: relative;
+  top: 0;
+  right: -90px;
+}
+
+.nav-dark > .banner-buttons >
+.user-profile-options > .profile-dropdown{
+  top: 40px;
+  right: -128px;
+
+}
+
+.nav-dark > .logo input{
+  scale: 1.2;
+}
+
+.nav-dark > .banner-buttons{
+  scale: .9;
+  position: relative;
+  top: 8px;
+}
+
+
+
+
 .nav-bar *{
   z-index: 3;
 }
@@ -25,8 +76,10 @@
 .logo {
   position: relative;
   left: 50px;
-  top:10px;
+  top:20px;
   width: 186px;
+  height: 46px;
+
 
 }
 
@@ -38,8 +91,8 @@
   display: flex;
   justify-content: space-evenly;
   position: relative;
-  top: 20px;
-  right: 10px;
+  top: 25px;
+  right: -450px;
   height: 31px;
   width: 308px;
   /* border: white 1px solid; */
@@ -69,7 +122,7 @@
 .profile-button {
   position: relative;
   top: 5px;
-  right: -20px;
+  right: -55px;
   background-color: #FCFCF4;
   color: #3C4047;
   border: #3C4047 1px solid;
@@ -81,6 +134,7 @@
 
 .profile-dropdown{
   position: relative;
+  right: -30px;
   display: flex;
   flex-direction: column;
   background-color: #FCFCF4;
