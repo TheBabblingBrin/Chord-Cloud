@@ -16,7 +16,7 @@ footer{
 
 html,
 body{
-  background-color: #FCFCF4;;
+  background-color: #FCFCF4;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -49,3 +49,5 @@ body{
 #root{
   background-color: whitesmoke;
 }
+
+

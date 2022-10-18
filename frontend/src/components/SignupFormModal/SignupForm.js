@@ -30,60 +30,60 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="modal-inputs"
+    onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        First Name
-
         <input
           type="text"
           value={firstName}
+          placeholder='First Name'
           onChange={(e) => setFirstname(e.target.value)}
         />
         </label>
         <label>
-        Last Name
         <input
           type="text"
           value={lastName}
+          placeholder='Last Name'
           onChange={(e) => setLastname(e.target.value)}
         />
         </label>
       <label>
-        Email
         <input
           type="text"
           value={email}
+          placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
       <label>
-        Username
         <input
           type="text"
           value={username}
+          placeholder='Username'
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
       <label>
-        Password
         <input
           type="password"
           value={password}
+          placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
       <label>
-        Confirm Password
         <input
           type="password"
+          placeholder='Confirm Password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className="continue" type="submit">Continue</button>
     </form>
   );
 }

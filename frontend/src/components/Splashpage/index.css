@@ -13,7 +13,7 @@
   font-size: 16px;
   border: 1px transparent;
   border-radius: 3px;
-  z-index: 3;
+
 }
 
 .search-div{
@@ -24,4 +24,8 @@
   position: relative;
   top: 450px;
 
+}
+
+.search-div *{
+  z-index: 2;
 }

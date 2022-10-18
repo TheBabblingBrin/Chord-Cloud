@@ -6,7 +6,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 
 import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
-import SongForm from './SongForm';
+import SongForm from '../SongFormModal/SongForm';
 import CommentsIndex from '../Comments/CommentIndex';
 import { loadCommentsBySongId } from '../../store/comments';
 import PlayButton from './PlayButton';

@@ -2,6 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import './index.css'
+import SongFormModal from '../SongFormModal';
 
 const SearchBar = () => {
   const dispatch = useDispatch()
@@ -9,12 +10,7 @@ const SearchBar = () => {
 
   return (
     <div className='search-div'>
-
-        <button
-        onClick={()=> history.push("/songs/upload")}>
-          Upload your own
-        </button>
-
+        <SongFormModal />
     </div>
   );
 }

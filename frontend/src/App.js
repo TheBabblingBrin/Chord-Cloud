@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import SongsIndex from "./components/SongDisplays/SongIndex";
 import { loadSongs, getAllSongs } from "./store/songs";
 import SongShow from "./components/SongDisplays/SongShow";
-import SongForm from "./components/SongDisplays/SongForm";
+import SongForm from "./components/SongFormModal/SongForm";
 import Player from "./components/AudioPlayer";
 import Splashpage from "./components/Splashpage";
 
@@ -31,7 +31,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={Splashpage} />
-          <Route path="/songs/upload"  component={SongForm}/>
           <Route path="/songs/:songId"  component={SongShow}/>
 
         </Switch>

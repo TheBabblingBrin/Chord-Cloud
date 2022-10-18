@@ -142,7 +142,6 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
           type="submit"
           disabled={errors.length > 0}
         >{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
         {demoSong}
       </form>
     </section>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const history = useHistory();
-
+  
   const sessionUser = useSelector(state => state.session.user);
   let sessionLinks;
   if (sessionUser) {
