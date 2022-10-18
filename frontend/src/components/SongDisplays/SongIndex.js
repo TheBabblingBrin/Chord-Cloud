@@ -16,7 +16,7 @@ const SongsIndex = () => {
     return (<h2>LOADING</h2>)
   }
   let idx = songs.length-1
-  songs = songs.slice(idx-10,idx)
+  songs = songs.slice(idx-12,idx)
   return (
     <div className='trending-tracks'>
       <div className='trending-tracks-title'>

@@ -1,20 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import { Link, useHistory} from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
 import { setCurrentSong } from '../../store/songs';
 
 const SongIndexItem = ({ song }) => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const currentSong = useSelector(state => state.songs.currentSong)
+  const [button, setButton] = useState('')
+  useEffect(()=>{
+    currentSong.playing === true && currentSong.id === song.id?
+
+    setButton(<i class="fa-solid fa-pause"></i>):
+    setButton(<i class="fa-solid fa-play"></i>)
+
+  },[currentSong, dispatch])
+
+
 
   return (
     <div className='splash-badge'>
+      <div className='hover-image'>
+      <button
+      className='play-button'
+      onClick={()=>
+        dispatch(setCurrentSong(song))}>
+        {button}
+        </button>
       <input
+        className='song-image'
       type='image'
       src={song.imageUrl}
       onClick={()=>
-        dispatch(setCurrentSong(song))}
+        history.push(`/songs/${song.id}`)}
       ></input>
+      </div>
       <div className='badge-details'>
         <Link to={`/songs/${song.id}`}>
           <p>
@@ -23,10 +43,8 @@ const SongIndexItem = ({ song }) => {
         </Link>
         <p>{song.User.username}</p>
       </div>
-
     </div>
   );
 };
 
 export default SongIndexItem;
-
