@@ -15,8 +15,14 @@ const SongIndexItem = ({ song }) => {
       onClick={()=>
         dispatch(setCurrentSong(song))}
       ></input>
-      <Link to={`/songs/${song.id}`}>{song.title}</Link>
-      <p>{song.User.username}</p>
+      <div className='badge-details'>
+        <Link to={`/songs/${song.id}`}>
+          <p>
+            {song.title}
+          </p>
+        </Link>
+        <p>{song.User.username}</p>
+      </div>
 
     </div>
   );

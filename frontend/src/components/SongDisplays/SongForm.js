@@ -38,7 +38,7 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
 
 
   let demoSong = null
-  if(user.id ===1){
+  if(user?.id ===1){
     demoSong = (<button type="button"
     onClick={()=>{
       setTitle('test song 1');

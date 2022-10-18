@@ -11,18 +11,21 @@ footer{
   justify-content: center;
   background-color: #3C4047 ;
   font-size: 12px;
-  font-family: 'Lucida Grande','Lucida Sans', 'Lucida Sans Regular',  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color:#FCFCF4;
 }
 
 html,
 body{
+  background-color: #FCFCF4;;
   display: flex;
   align-content: center;
   justify-content: center;
   margin: auto;
   height: 100%;
   width: 100%;
+  z-index: -1;
+  font-family: 'Lucida Grande','Lucida Sans', 'Lucida Sans Regular',  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .rhap_container {
@@ -41,4 +44,8 @@ body{
 
 .rhap_progress-filled{
   background-color: #FCFCF4  !important;
+}
+
+#root{
+  background-color: whitesmoke;
 }

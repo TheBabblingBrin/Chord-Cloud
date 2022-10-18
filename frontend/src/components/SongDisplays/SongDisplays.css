@@ -1,6 +1,8 @@
 .trending-tracks{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative;
+  top: 0;
   max-width: 1180px;
   margin:auto;
   text-align: center;
@@ -9,6 +11,10 @@
 .trending-tracks-title{
   text-align: center;
   width: 100%;
+  position: relative;
+  top: 460px;
+  font-size: 24px;
+  margin-top:30px;
 
 }
 
@@ -16,13 +22,37 @@
   display: flex;
   flex-direction: column;
   margin: auto;
+  /* align-items: center; */
 }
 .splash-badge input{
   height: 153.31px;
   width: 153.31px;
 }
+.splash-badge *{
+  font-size: 12px;
+  text-decoration: none;
+}
+
+
 
 .splash-box {
+  display: grid;
+  grid-template-columns: repeat(5,200px);
+  position: relative;
+  top: 500px;
+
+}
+
+.badge-details *{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: left;
+  margin: 3px;
+  padding: 0;
+  opacity: .7;
+}
+
+.badge-details a{
+  margin-left: 0px;
+  opacity: 2 !important;
 }

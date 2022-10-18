@@ -1,0 +1,27 @@
+.splash-page{
+  display: flex;
+  flex-direction: column;
+  width: 1240px;
+
+}
+
+.search-div button{
+  height: 46px;
+  width: 170px;
+  background-color: #3C4047;
+  color: #FCFCF4;
+  font-size: 16px;
+  border: 1px transparent;
+  border-radius: 3px;
+  z-index: 3;
+}
+
+.search-div{
+  display: flex;
+  justify-content: center;
+  height: 46px;
+  width: 1240px;
+  position: relative;
+  top: 450px;
+
+}

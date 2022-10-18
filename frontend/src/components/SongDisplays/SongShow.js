@@ -51,7 +51,7 @@ if(user){
   buttons =(
     <div>
       <button
-        onClick={()=> handleDelete()}
+        onClick={(e)=> handleDelete()}
       >Delete</button>
       <button
         onClick={()=>{

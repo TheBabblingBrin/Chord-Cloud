@@ -11,11 +11,16 @@ const SongsIndex = () => {
   const dispatch = useDispatch()
 
 
-  const songs = useSelector(getAllSongs);
+  let songs = useSelector(getAllSongs);
+  if(!songs){
+    return (<h2>LOADING</h2>)
+  }
+  let idx = songs.length-1
+  songs = songs.slice(idx-10,idx)
   return (
     <div className='trending-tracks'>
       <div className='trending-tracks-title'>
-        <h2>Hear what's trending for free in the chordCloud community</h2>
+        <text>Hear what's trending for free in the chordCloud community</text>
       </div>
       <div className='splash-box'>
 
@@ -28,7 +33,6 @@ const SongsIndex = () => {
           ))
         }
       </div>
-      <Link to="/songs/upload">Upload Your Own</Link>
     </div>
   );
 }

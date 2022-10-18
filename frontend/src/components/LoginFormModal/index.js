@@ -12,8 +12,8 @@ function LoginFormModal() {
 
   return (
     <div className='modal-box'>
-      <button onClick={() => setShowModal(true)}>Log In</button>
-      <button onClick={() => dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))}>Demo User</button>
+      <button className='banner-login' onClick={() => setShowModal(true)}>Log In</button>
+      <button className='banner-login' onClick={() => dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))}>Demo User</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <LoginForm />

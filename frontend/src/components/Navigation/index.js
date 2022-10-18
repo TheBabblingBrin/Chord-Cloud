@@ -36,8 +36,7 @@ function Navigation({ isLoaded }){
         onClick={()=> history.push('/')}
         ></input>
       </div>
-    <div>
-        <NavLink exact to="/">Home</NavLink>
+    <div className='banner-buttons'>
         {isLoaded && sessionLinks}
     </div>
     </div>
