@@ -24,7 +24,7 @@ const CommentForm = () => {
 
   const validate = () => {
     const validationerrors = [];
-    if(!user) validationerrors.push('Please login to post a comment')
+    // if(!user) validationerrors.push('Please login to post a comment')
     if(body.length <= 0) validationerrors.push('Please input a comment before submission')
     return  validationerrors;
   }
@@ -56,19 +56,23 @@ const CommentForm = () => {
   return (
     <section className=''>
       <form className='' onSubmit={handleSubmit}>
-      {hasSubmitted && errors.length > 0 && (
-                    <ul>
-                        {errors.map((error) => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
-            )}
         <input
           type="text"
+          className='comment-input'
           placeholder="Write a comment"
           value={body}
           onChange={updateComment}
-        />
+          />
+          {hasSubmitted && errors.length > 0 && (
+            <div>
+
+                        <ul>
+                            {errors.map((error) => (
+                                <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+            </div>
+                )}
       </form>
     </section>
   );

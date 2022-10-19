@@ -5,10 +5,11 @@ import { useState, useEffect } from "react";
 import { loadCommentsBySongId } from '../../store/comments';
 import CommentForm from './CommentForm';
 import SingleComment from './SingleComment';
+import CommentBar from './CommentBar';
 
 
 
-const CommentsIndex= ({songId}) => {
+const CommentsIndex= ({song, songId}) => {
   const dispatch = useDispatch()
   const comments = useSelector((state)=> Object.values(state.comments));
 
@@ -19,20 +20,23 @@ const CommentsIndex= ({songId}) => {
   const songComments = comments.filter(comment => comment.songId == songId)
 
   return (
-    <section>
-        <CommentForm />
-      <ul>
+    <div className='comment-index'>
+
+    <div className='comment-index-counter'>
+    <i class="fa-solid fa-comment"></i>
+    {songComments.length} comments
+        </div>
+    <div className='comment-list'>
         {comments?
           songComments.map(comment => (
             <SingleComment
-
               comment={comment}
               key={comment.id}
             />
           )):null
         }
-      </ul>
-    </section>
+    </div>
+    </div>
   );
 }
 

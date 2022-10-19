@@ -27,7 +27,7 @@ const handleDelete = async () =>{
   }
 }
 
-
+const date= comment.createdAt.split('T')[0]
 let buttons = null
 if(user){
 
@@ -35,6 +35,7 @@ if(user){
   buttons =(
     <div>
       <button
+        className='comment-button'
         onClick={()=> handleDelete()}
       >Delete</button>
     </div>)
@@ -44,15 +45,19 @@ if(user){
 let content = null
  comment? content =(
 
-  <section>
-    User: {comment.User.username}
-    <br/>
-    {comment.body}
-    <br/>
-    {comment.createdAt}
+  <div className='comment-song'>
+    <div className='comment-portrait'></div>
+    <span className='comment-username'>
+      {comment.User.username}
+    </span>
+    <p>
+      {comment.body}
+    </p>
+  <div className='comment-item-meta'>
+    {date}
     {buttons}
-      <br/>
-  </section>
+  </div>
+  </div>
 ):
   content = null
 ;

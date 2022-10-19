@@ -11,6 +11,7 @@ import CommentsIndex from '../Comments/CommentIndex';
 import { loadCommentsBySongId } from '../../store/comments';
 import PlayButton from './PlayButton';
 import { getURL } from '../../store/session';
+import ListeningDetails from './ListeningDetails';
 
 
 const SongShow =  () => {
@@ -18,9 +19,9 @@ const SongShow =  () => {
   const history = useHistory();
   const { songId } = useParams();
   const song = useSelector((state) => state.songs.allSongs[songId]);
-  const user = useSelector((state) => state.session.user)
   const songs = useSelector((state) => state.songs.allSongs);
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
+
   useEffect(() => {
     dispatch(loadCommentsBySongId(songId))
     dispatch(getURL())
@@ -38,31 +39,10 @@ const SongShow =  () => {
 
 
 
-const handleDelete = async () =>{
-  history.push('/')
-  const deleted = await dispatch(removeSong(song.id))
 
-}
 
 let date = song.updatedAt.split('T')[0]
-let buttons = null
-if(user){
 
-  song.userId === user.id?
-  buttons =(
-    <div >
-      <button
-        onClick={(e)=> handleDelete()}
-      >Delete</button>
-      <button
-        onClick={()=>{
-          dispatch(loadSongs())
-          setShowUpdateSongForm(!showUpdateSongForm)}
-        }
-        >Update</button>
-    </div>)
-  : buttons = null;
-}
 
 
 
@@ -89,21 +69,19 @@ if(user){
     type="image"
     src={song.imageUrl}>
     </input>
-    {buttons}
-    {showUpdateSongForm?
+    {/* {showUpdateSongForm?
         <SongForm
         song={song}
         hideForm={() => setShowUpdateSongForm(!showUpdateSongForm)}
         formType={'editSong'}
-        />:null}
+        />:null} */}
 
       <br/>
     </div>
     <div className='song-banner-bg'
     style={{backgroundImage: `url(${song.imageUrl})`}}>
     </div>
-    <CommentsIndex songId={song.id} />
-    <Link to="/">Back to Songs Index</Link>
+    <ListeningDetails song={song} songId={song.id}/>
   </div>)
 
 
