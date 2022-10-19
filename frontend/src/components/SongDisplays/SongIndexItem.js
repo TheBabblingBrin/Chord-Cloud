@@ -11,8 +11,8 @@ const SongIndexItem = ({ song }) => {
   useEffect(()=>{
     currentSong.playing === true && currentSong.id === song.id?
 
-    setButton(<i class="fa-solid fa-pause"></i>):
-    setButton(<i class="fa-solid fa-play"></i>)
+    setButton(<i className="fa-solid fa-pause"></i>):
+    setButton(<i className="fa-solid fa-play"></i>)
 
   },[currentSong, dispatch])
 

@@ -9,11 +9,11 @@ const SongForm = ({song, formType = 'createSong'}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
-  const [title, setTitle] = useState(song? song.title:null );
+  const [title, setTitle] = useState(song? song.title:'');
   const [description, setDescription] = useState(song? song.description:null );
-  const [url, setUrl] = useState(song? song.url: null);
-  const [imageUrl, setImage] = useState(song? song.imageUrl:null );
-  const [albumId, setAlbumId] = useState(song? song.albumId: null);
+  const [url, setUrl] = useState(song? song.url: '');
+  const [imageUrl, setImage] = useState(song? song.imageUrl:'' );
+  const [albumId, setAlbumId] = useState(song? song.albumId: '');
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setSubmitted] = useState(false)
 
@@ -127,7 +127,7 @@ const SongForm = ({song, formType = 'createSong'}) => {
           disabled={errors.length > 0}
         >{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
         {demoSong}
-        {hasSubmitted && errors.length > 0 && (
+        {hasSubmitted && errors?.length > 0 && (
                     <ul className='error-list'>
                         {errors.map((error) => (
                             <li key={error}>{error}</li>

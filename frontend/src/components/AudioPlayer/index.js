@@ -3,6 +3,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect, useRef } from 'react'
 import './index.css'
+import { setCurrentSong } from '../../store/songs';
 
 
 
@@ -11,7 +12,7 @@ const Player = () => {
   const playState = useSelector(state => state.songs.currentSong.playing)
   const [source, changeSrc] = useState(null)
   const player = useRef();
-
+  const dispatch = useDispatch()
   useEffect(() => {
 
     changeSrc(song.url)
@@ -40,7 +41,6 @@ const Player = () => {
       autoPlayAfterSrcChange={true}
       layout="horizontal-reverse"
       src={source}
-      onPlay={e => console.log('playing')}
     />
     <div className='song-preview'>
 
