@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import FormLogo from "../FormLogo";
+import ErrorList from '../ErrorList';
+
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -33,58 +36,58 @@ function SignupFormPage() {
     <form className="modal-inputs"
     onSubmit={handleSubmit}>
 
-      <label>
+    
         <input
           type="text"
           value={firstName}
           placeholder='First Name'
           onChange={(e) => setFirstname(e.target.value)}
         />
-        </label>
-        <label>
+        
+      
         <input
           type="text"
           value={lastName}
           placeholder='Last Name'
           onChange={(e) => setLastname(e.target.value)}
         />
-        </label>
-      <label>
+        
+    
         <input
           type="text"
           value={email}
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
         />
-      </label>
-      <label>
+      
+    
         <input
           type="text"
           value={username}
           placeholder='Username'
           onChange={(e) => setUsername(e.target.value)}
         />
-      </label>
-      <label>
+      
+    
         <input
           type="password"
           value={password}
           placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
-      </label>
-      <label>
+      
+    
         <input
           type="password"
           placeholder='Confirm Password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-      </label>
+      
       <button className="continue" type="submit">Continue</button>
-      <ul className="error-list">
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      <ErrorList errors={errors}/>
+
+      <FormLogo />
     </form>
   );
 }

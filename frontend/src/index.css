@@ -41,6 +41,7 @@ body link:hover{
   background-color: transparent !important;
   box-shadow: none !important;
   width: 70% !important;
+  max-width: 1100px !important;
 }
 
 .rhap_container svg,
@@ -70,11 +71,3 @@ body link:hover{
   margin-top: 12px
 }
 
-.error-list{
-  list-style: none;
-  font-size: 12px;
-}
-
-.error-list li{
-  margin:5px;
-}

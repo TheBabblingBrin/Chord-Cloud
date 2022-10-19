@@ -1,0 +1,12 @@
+.error-list{
+  list-style: none;
+  font-size: 12px;
+}
+
+.error-list li{
+  margin:5px;
+}
+
+.error-list i {
+  color: rgba(222, 8, 26, 0.8);
+}

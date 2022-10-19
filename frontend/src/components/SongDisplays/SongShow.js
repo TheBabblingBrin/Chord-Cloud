@@ -41,8 +41,8 @@ const SongShow =  () => {
 
 
 
-let date = song.updatedAt.split('T')[0]
 
+const date = new Date(song?.updatedAt).toLocaleDateString()
 
 
 
@@ -63,20 +63,12 @@ let date = song.updatedAt.split('T')[0]
       <span>{song?.User?.username}</span>
       </div>
     </div>
-    <span id='song-updated-at'>Updated at {date}</span>
+    <span id='song-updated-at'>{song.updatedAt === song.createdAt? 'Uploaded on': 'Updated on'} {date}</span>
     <input
     className="sound-container-img"
     type="image"
     src={song.imageUrl}>
     </input>
-    {/* {showUpdateSongForm?
-        <SongForm
-        song={song}
-        hideForm={() => setShowUpdateSongForm(!showUpdateSongForm)}
-        formType={'editSong'}
-        />:null} */}
-
-      <br/>
     </div>
     <div className='song-banner-bg'
     style={{backgroundImage: `url(${song.imageUrl})`}}>

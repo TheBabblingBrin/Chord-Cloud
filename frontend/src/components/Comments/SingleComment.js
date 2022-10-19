@@ -27,7 +27,7 @@ const handleDelete = async () =>{
   }
 }
 
-const date= comment.createdAt.split('T')[0]
+const date = new Date(comment?.updatedAt).toLocaleDateString()
 let buttons = null
 if(user){
 
@@ -37,7 +37,7 @@ if(user){
       <button
         className='comment-button'
         onClick={()=> handleDelete()}
-      >Delete</button>
+      ><i class="fa-solid fa-trash"></i></button>
     </div>)
   : buttons = null;
   }

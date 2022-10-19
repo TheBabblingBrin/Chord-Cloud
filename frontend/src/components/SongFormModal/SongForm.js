@@ -4,6 +4,8 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 
 import { updateSong, uploadSong } from '../../store/songs';
+import ErrorList from '../ErrorList';
+import FormLogo from '../FormLogo';
 
 const SongForm = ({song, formType = 'createSong'}) => {
   const dispatch = useDispatch()
@@ -54,7 +56,7 @@ const SongForm = ({song, formType = 'createSong'}) => {
     const validationerrors = [];
     if(title.length <= 0) validationerrors.push('Please input a song title')
     if(url.length <= 0) validationerrors.push('Please input an audio source url')
-    if(imageUrl.length <= 0) validationerrors.push('Please input an audio source url')
+    if(imageUrl.length <= 0) validationerrors.push('Please input an image source url')
 
     ///TODO Album ID ownership validations once Albums are implemented
 
@@ -128,12 +130,10 @@ const SongForm = ({song, formType = 'createSong'}) => {
         >{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
         {demoSong}
         {hasSubmitted && errors?.length > 0 && (
-                    <ul className='error-list'>
-                        {errors.map((error) => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
+
+                    <ErrorList errors={errors}/>
             )}
+        <FormLogo />
       </form>
     </section>
   );

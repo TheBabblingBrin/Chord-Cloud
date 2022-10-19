@@ -31,7 +31,7 @@ if(user){
       <button
         className='cb-button'
         onClick={(e)=> handleDelete()}
-      >Delete</button>
+      ><i class="fa-solid fa-trash"></i></button>
       <SongFormModal style="cb-button" formType='editSong'song={song}/>
     </div>)
   : buttons = null;
