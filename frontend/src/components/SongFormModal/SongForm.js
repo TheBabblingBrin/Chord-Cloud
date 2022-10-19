@@ -5,7 +5,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 import { updateSong, uploadSong } from '../../store/songs';
 
-const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
+const SongForm = ({song, formType = 'createSong'}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
@@ -82,21 +82,11 @@ const SongForm = ({song, hideForm = null, formType = 'createSong'}) => {
    formType === 'createSong'? createdSong = await dispatch(uploadSong(payload)): createdSong = await dispatch(updateSong(payload));
     if (createdSong) {
       setSubmitted(false)
-      if(formType === 'editSong'){
-        hideForm()
-      }
        history.push(`/songs/${createdSong.id}`);
     }
   };
 
-  const handleCancelClick = (e) => {
-    e.preventDefault();
-    if(formType === 'editSong'){
-      hideForm()
-    }else{
-      return history.push(`/`);
-    }
-  };
+
 
   return (
     <section className=''>

@@ -2,21 +2,20 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SongForm from './SongForm';
 
-function SongFormModal() {
+function SongFormModal({formType, song, style}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="banner-signup">
+    <>
       <button
-      className='song-form-button'
-      onClick={() => {setShowModal(true);
-      console.log('make a song')}}>Upload your own</button>
+      className={style}
+      onClick={() => {setShowModal(true);}}>{formType === 'createSong'? 'Upload your own':'Update Song'}</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SongForm />
+          <SongForm formType={formType} song={song}/>
         </Modal>
       )}
-    </div>
+      </>
   );
 }
 

@@ -16,13 +16,7 @@
 
 }
 
-.cb-button{
-  height: 26px;
-  background-color: transparent;
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  margin-top: 12px
-}
+
 .cb-button:not(:first-child){
   margin-left: 5px;
 }
