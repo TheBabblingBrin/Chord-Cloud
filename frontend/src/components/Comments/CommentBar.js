@@ -5,13 +5,14 @@ import { useHistory} from 'react-router-dom';
 import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
 import CommentForm from './CommentForm';
 import './index.css'
+import SongFormModal from '../SongFormModal';
 
 const CommentBar= ({songId}) => {
   const dispatch = useDispatch()
   const history = useHistory();
   const song = useSelector((state) => state.songs.allSongs[songId]);
   const user = useSelector((state) => state.session.user)
-  const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
   }, [dispatch])
@@ -31,13 +32,7 @@ if(user){
         className='cb-button'
         onClick={(e)=> handleDelete()}
       >Delete</button>
-      <button
-         className='cb-button'
-          onClick={()=>{
-          dispatch(loadSongs())
-          setShowUpdateSongForm(!showUpdateSongForm)}
-        }
-        >Update</button>
+      <SongFormModal style="cb-button" formType='editSong'song={song}/>
     </div>)
   : buttons = null;
 }

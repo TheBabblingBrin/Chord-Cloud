@@ -24,18 +24,13 @@ function LoginForm() {
 
 
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
+
       <label>
         <input
           type="text"
           value={credential}
           placeholder="Username or Email"
           onChange={(e) => setCredential(e.target.value)}
-          required
         />
       </label>
       <label>
@@ -45,10 +40,14 @@ function LoginForm() {
           placeholder="Password"
 
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
       </label>
       <button type="submit">Log In</button>
+      <ul className="error-list">
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
     </form>
     </div>
   );
