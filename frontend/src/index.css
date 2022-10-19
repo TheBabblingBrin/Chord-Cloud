@@ -69,3 +69,12 @@ body link:hover{
   border-radius: 3px;
   margin-top: 12px
 }
+
+.error-list{
+  list-style: none;
+  font-size: 12px;
+}
+
+.error-list li{
+  margin:5px;
+}

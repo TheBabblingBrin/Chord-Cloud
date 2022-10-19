@@ -32,9 +32,7 @@ function SignupFormPage() {
   return (
     <form className="modal-inputs"
     onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+
       <label>
         <input
           type="text"
@@ -84,6 +82,9 @@ function SignupFormPage() {
         />
       </label>
       <button className="continue" type="submit">Continue</button>
+      <ul className="error-list">
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
     </form>
   );
 }

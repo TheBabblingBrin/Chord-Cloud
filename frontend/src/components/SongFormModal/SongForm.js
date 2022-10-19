@@ -91,13 +91,7 @@ const SongForm = ({song, formType = 'createSong'}) => {
   return (
     <section className=''>
       <form className='' onSubmit={handleSubmit}>
-      {hasSubmitted && errors.length > 0 && (
-                    <ul>
-                        {errors.map((error) => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
-            )}
+
         <input
           type="text"
           placeholder="Title"
@@ -133,6 +127,13 @@ const SongForm = ({song, formType = 'createSong'}) => {
           disabled={errors.length > 0}
         >{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
         {demoSong}
+        {hasSubmitted && errors.length > 0 && (
+                    <ul className='error-list'>
+                        {errors.map((error) => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+            )}
       </form>
     </section>
   );

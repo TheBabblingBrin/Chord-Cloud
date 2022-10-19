@@ -9,7 +9,7 @@ function SongFormModal({formType, song, style}) {
     <>
       <button
       className={style}
-      onClick={() => {setShowModal(true);}}>{formType === 'createSong'? 'Upload your own':'Update Song'}</button>
+      onClick={() => {setShowModal(true);}}>{formType === 'editSong'? 'Update Song':'Upload your own'}</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SongForm formType={formType} song={song}/>
