@@ -3,7 +3,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect, useRef } from 'react'
 import './index.css'
-import { setCurrentSong } from '../../store/songs';
+import { isPlaying, setCurrentSong } from '../../store/songs';
 
 
 
@@ -20,9 +20,14 @@ const Player = () => {
         player.current.audio.current.play();
       } else{
         player.current.audio.current.pause();
+
+
       }
 
   }, [song, playState, source])
+
+  const playIt = (status) => dispatch(isPlaying(status))
+
 
   if(!song || !song.id){
     return (
@@ -34,6 +39,8 @@ const Player = () => {
   return (
   <footer className='audio-footer'>
     <AudioPlayer ref={player}
+      onPlay={()=> playIt(true)}
+      onPause={()=> playIt(false)}
       className='audio-player'
       showJumpControls={true}
       crossOrigin="anonymous"

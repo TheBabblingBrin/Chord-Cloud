@@ -4,6 +4,7 @@ const LOAD = 'songs/LOAD';
 const ADD_ONE = 'songs/ADD_ONE'
 const REMOVE = 'songs/REMOVE'
 const SET_CURRENT = 'songs/SET_CURRENT'
+const PLAYING = 'songs/PLAYING'
 
 /****************///HELPER FUNCTIONS//*****************/
 export const getAllSongs = (state) => Object.values(state.songs.allSongs);
@@ -28,6 +29,11 @@ const remove = (songId) => ({
 export const setCurrentSong = (song) => ({
   type: SET_CURRENT,
   song
+})
+
+export const isPlaying = (status) =>({
+  type: PLAYING,
+  status
 })
 /*******///THUNKS//***************/
 export const loadSongs = () => async dispatch => {
@@ -94,6 +100,7 @@ export const updateSong = (song) => async dispatch => {
 
 
 const initialState = {
+  playing: false,
   allSongs: {},
   currentSong: {playing:true}
 };
@@ -128,6 +135,8 @@ const songsReducer = (state = initialState, action) => {
         playState.currentSong.playing = true
       }
       return playState
+    case PLAYING:
+      return {...state, playing: action.status}
      default:
       return state;
     }

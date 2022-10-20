@@ -2,6 +2,9 @@
   background-color: #3C4047;
   border: 1px transparent solid;
   border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   align-self: center;
   position: relative;
   top: 100px;
@@ -19,6 +22,10 @@
 .play-button i{
   color: #FCFCF4;
   scale: 1.5;
+}
+
+.fa-pause{
+ padding-right: 2px;
 }
 
 

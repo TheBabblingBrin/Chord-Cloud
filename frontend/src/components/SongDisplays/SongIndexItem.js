@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link, useHistory} from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { setCurrentSong } from '../../store/songs';
+import PlayButton from './PlayButton';
 
 const SongIndexItem = ({ song }) => {
   const dispatch = useDispatch()
@@ -21,12 +22,7 @@ const SongIndexItem = ({ song }) => {
   return (
     <div className='splash-badge'>
       <div className='hover-image'>
-      <button
-      className='play-button'
-      onClick={()=>
-        dispatch(setCurrentSong(song))}>
-        {button}
-        </button>
+     <PlayButton song={song} />
       <input
         className='song-image'
       type='image'
