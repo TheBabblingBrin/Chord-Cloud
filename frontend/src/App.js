@@ -17,6 +17,7 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const currentSong = useSelector(state => state.songs.currentSong)
+  const songs = useSelector(state => state.allSongs)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(sessionActions.getURL());
@@ -25,7 +26,7 @@ function App() {
   useEffect(() => {
     dispatch(loadSongs());
     dispatch(sessionActions.getURL())
-  }, [dispatch, currentSong])
+  }, [dispatch, songs, currentSong])
 
   return (
     <>
@@ -33,7 +34,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={Splashpage} />
-          <Route path="/songs/:songId"  component={SongShow}/>
+          <Route path="/songs/:songId"  songs={songs} component={SongShow}/>
 
         </Switch>
       )}

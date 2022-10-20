@@ -8,7 +8,6 @@ function ErrorList({errors}) {
     if(node?.hasChildNodes()){
       for( let form of node.childNodes.values()){
        if(form.nodeName === 'INPUT') {
-        console.log(errors)
         let formPH = form.placeholder
             if(formPH === 'Title' && errors.includes('Please input a song title')){
               form.style.border = errorBorder
@@ -39,18 +38,6 @@ function ErrorList({errors}) {
       }
     }
   }
-
-  console.log(nodes)
-  // if(nodes.hasChildNodes()){
-  //   let children = nodes.childNodes
-  //   console.log('children++++++++++++++++++++++', children)
-  // }
-  // console.log(nodes)
-//   for(let i=0; i< nodes.length; i++) {
-//     if (nodes[i].nodeName.toLowerCase() == 'input') {
-//          nodes[i].style.border = '1px solid red';
-//      }
-// }
 
 
   return (

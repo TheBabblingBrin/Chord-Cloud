@@ -8,17 +8,17 @@ const PlayButton = ({ song }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const currentSong = useSelector(state => state.songs.currentSong)
-  const [button, setButton] = useState(<i class="fa-solid fa-play"></i>)
+  const [button, setButton] = useState(<i className="fa-solid fa-play"></i>)
   const playing = useSelector(state => state.songs.playing)
 
   useEffect(()=>{
-    if(!currentSong || !currentSong.id){
-      return
-    }
+    // if(!currentSong || !currentSong.id){
+    //   return
+    // }
     playing === true && currentSong.id === song.id?
 
-    setButton(<i class="fa-solid fa-pause"></i>):
-    setButton(<i class="fa-solid fa-play"></i>)
+    setButton(<i className="fa-solid fa-pause"></i>):
+    setButton(<i className="fa-solid fa-play"></i>)
 
   },[playing, currentSong, dispatch])
 

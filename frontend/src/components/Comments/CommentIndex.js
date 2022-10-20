@@ -23,7 +23,7 @@ const CommentsIndex= ({song, songId}) => {
     <div className='comment-index'>
 
     <div className='comment-index-counter'>
-    <i class="fa-solid fa-comment"></i>
+    <i className="fa-solid fa-comment"></i>
     {songComments.length} comments
         </div>
     <div className='comment-list'>

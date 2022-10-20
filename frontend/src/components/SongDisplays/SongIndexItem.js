@@ -37,7 +37,7 @@ const SongIndexItem = ({ song }) => {
             {song.title}
           </p>
         </Link>
-        <p>{song.User.username}</p>
+        <p>{song.User?.username}</p>
       </div>
     </div>
   );

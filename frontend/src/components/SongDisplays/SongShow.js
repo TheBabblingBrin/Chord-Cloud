@@ -18,25 +18,25 @@ const SongShow =  () => {
   const dispatch = useDispatch()
   const history = useHistory();
   const { songId } = useParams();
-  const song = useSelector((state) => state.songs.allSongs[songId]);
   const songs = useSelector((state) => state.songs.allSongs);
+  const singlesong = useSelector((state) => state.songs.singleSong)
+  const song = useSelector((state) => state.songs.allSongs[songId]);
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
-
   useEffect(() => {
-    dispatch(loadCommentsBySongId(songId))
     dispatch(getURL())
-  }, [dispatch, songs, song])
+    dispatch(loadCommentsBySongId(songId))
+    dispatch(getOneSong(songId))
 
+  }, [dispatch, songId])
 
-  if(!song || !song.User){
+  if(!song|| !song.User){
     setTimeout(()=>{
-      dispatch(loadSongs())
-    },500)
+      dispatch(getOneSong(songId))
+    }, 0)
     return (
-      <h2>LOADING</h2>
+      <h1>LOADING</h1>
     )
   }
-
 
 
 

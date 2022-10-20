@@ -9,14 +9,14 @@ import { isPlaying, setCurrentSong } from '../../store/songs';
 
 const Player = () => {
   const song = useSelector(state => state.songs.currentSong)
-  const playState = useSelector(state => state.songs.currentSong.playing)
+  const playState = useSelector(state => state.songs.playing)
   const [source, changeSrc] = useState(null)
   const player = useRef();
   const dispatch = useDispatch()
   useEffect(() => {
 
     changeSrc(song.url)
-      if(song.playing === true){
+      if(playState === true){
         player.current.audio.current.play();
       } else{
         player.current.audio.current.pause();
@@ -24,9 +24,12 @@ const Player = () => {
 
       }
 
-  }, [song, playState, source])
+  }, [song, source])
 
-  const playIt = (status) => dispatch(isPlaying(status))
+  const playIt = (status) => {
+    dispatch(isPlaying(status))
+    // dispatch(setCurrentSong(song))
+    }
 
 
   if(!song || !song.id){

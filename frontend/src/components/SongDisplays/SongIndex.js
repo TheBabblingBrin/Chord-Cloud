@@ -12,11 +12,13 @@ const SongsIndex = () => {
 
 
   let songs = useSelector(getAllSongs);
+  if(songs.length > 12){
+    songs = songs.slice(songs.length-12, songs.length)
+  }
   if(!songs){
     return (<h2>LOADING</h2>)
   }
-  let idx = songs.length-1
-  songs = songs.slice(idx-12,idx)
+
   return (
     <div className='trending-tracks'>
       <div className='trending-tracks-title'>

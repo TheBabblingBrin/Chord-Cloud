@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 
-
+import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
 import { updateSong, uploadSong } from '../../store/songs';
 import ErrorList from '../ErrorList';
 import FormLogo from '../FormLogo';
 
-const SongForm = ({song, formType = 'createSong'}) => {
+const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
   const [title, setTitle] = useState(song? song.title:'');
-  const [description, setDescription] = useState(song? song.description:null );
+  const [description, setDescription] = useState(song? song.description:'' );
   const [url, setUrl] = useState(song? song.url: '');
   const [imageUrl, setImage] = useState(song? song.imageUrl:'' );
   const [albumId, setAlbumId] = useState(song? song.albumId: '');
@@ -45,8 +45,8 @@ const SongForm = ({song, formType = 'createSong'}) => {
     onClick={()=>{
       setTitle('test song 1');
       setDescription('dev test');
-      setImage('https://res.cloudinary.com/ddmb8mrlb/image/upload/v1665800701/imageUrl/maxresdefault_hjogtz.jpg');
-      setUrl('https://res.cloudinary.com/ddmb8mrlb/video/upload/v1665799036/audioUrl/BRAD_MEHLDAU_When_It_Rains_odfnzx.mp4');
+      setImage('https://cdn.pixabay.com/audio/2022/08/05/13-29-08-266_200x200.png');
+      setUrl('https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3');
       setAlbumId(1)
     }
     }>Demo Song</button>)
@@ -82,8 +82,9 @@ const SongForm = ({song, formType = 'createSong'}) => {
     };
     let createdSong;
    formType === 'createSong'? createdSong = await dispatch(uploadSong(payload)): createdSong = await dispatch(updateSong(payload));
-    if (createdSong) {
+   if (createdSong) {
       setSubmitted(false)
+      setShowModal(false)
        history.push(`/songs/${createdSong.id}`);
     }
   };

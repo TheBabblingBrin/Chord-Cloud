@@ -37,7 +37,7 @@ export const isPlaying = (status) =>({
 })
 /*******///THUNKS//***************/
 export const loadSongs = () => async dispatch => {
-  const response = await csrfFetch(`/api/songs`);
+  const response = await csrfFetch(`/api/songs?page=1&size=20`);
 
   if (response.ok) {
     const list = await response.json();
@@ -102,6 +102,7 @@ export const updateSong = (song) => async dispatch => {
 const initialState = {
   playing: false,
   allSongs: {},
+  singleSong: {},
   currentSong: {playing:true}
 };
 
@@ -112,15 +113,15 @@ const songsReducer = (state = initialState, action) => {
      return {...state, allSongs:{...allSongs}}
     case ADD_ONE:
       if (!state.allSongs[action.song.id]) {
-        console.log('imade it')
        const newState = {
         ...state,
-        allSongs:{[action.song.id]: action.song}
+        allSongs:{...state.allSongs, [action.song.id]: action.song}
         };
         return newState;
         }
         const updatedState = { ...state, allSongs: {...state.allSongs}}
         updatedState.allSongs[action.song.id] = action.song
+        updatedState.singleSong = {...action.song}
         return updatedState
     case REMOVE:
       const deleteState = { ...state };
@@ -129,10 +130,11 @@ const songsReducer = (state = initialState, action) => {
     case SET_CURRENT:
       let playState = {...state, currentSong: action.song}
       if(state.currentSong && state.currentSong.id === action.song.id){
-        playState= {...state, currentSong:{ ...action.song, playing:!state.currentSong.playing}}
+        playState= {...state, playing:!state.playing, currentSong:{ ...action.song, playing:!state.currentSong.playing}}
 
       }else {
         playState.currentSong.playing = true
+        playState.playing = true
       }
       return playState
     case PLAYING:

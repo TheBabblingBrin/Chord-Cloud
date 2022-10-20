@@ -37,7 +37,7 @@ if(user){
       <button
         className='comment-button'
         onClick={()=> handleDelete()}
-      ><i class="fa-solid fa-trash"></i></button>
+      ><i className="fa-solid fa-trash"></i></button>
     </div>)
   : buttons = null;
   }

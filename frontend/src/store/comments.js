@@ -29,6 +29,9 @@ export const loadCommentsBySongId = (songId) => async dispatch => {
 
   if (response.ok) {
     const list = await response.json();
+    if(list === null){
+      return
+    }
     dispatch(load(list));
     return list
   }
