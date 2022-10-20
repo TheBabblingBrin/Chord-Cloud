@@ -21,7 +21,7 @@ const songs = [
   },
   {
     albumId: 2,
-    userId: 2,
+    userId: 3,
     title: "Modern chill future calm",
     description: "feat penguinmusic",
     url: "https://cdn.pixabay.com/audio/2021/12/22/audio_9da2a60074.mp3",
@@ -83,6 +83,55 @@ const songs = [
     url: "https://cdn.pixabay.com/audio/2022/09/05/audio_2a37da50b5.mp3",
     imageUrl: "https://cdn.pixabay.com/audio/2022/09/05/16-55-13-976_200x200.jpeg",
   },
+  {
+    userId: 8,
+    title: "Not Sorry",
+    description: "A 9/11 tribute album",
+    imageUrl: "https://res.cloudinary.com/degkakjou/image/upload/v1666292681/DALL_E_2022-10-20_15.04.27_-_a_rubber_ducky_dressed_like_a_terrorist_dsj63w.png",
+    url:'https://res.cloudinary.com/degkakjou/video/upload/v1666292089/Sebas_dlfyxg.mp3',
+  },
+  {
+    userId: 9,
+    title: "Shades of Pink",
+    description: "BLACKPINK REMIXES",
+    imageUrl: "https://res.cloudinary.com/degkakjou/image/upload/v1666292679/DALL_E_2022-10-20_15.02.59_-_a_blackpink_remix_kpop_fan_album_cover_cmci6c.png",
+    url:'https://res.cloudinary.com/degkakjou/video/upload/v1666291340/William_qs1n37.mp3',
+  },
+  {
+  userId: 10,
+  title: "200 Commits",
+  description: "The struggles of a retired bowler turned programmer",
+  imageUrl: "https://i.postimg.cc/fT5b7XxL/bowling.jpg",
+    url:'https://res.cloudinary.com/degkakjou/video/upload/v1666292323/Allen2_hvz7yy.mp3',
+},
+{
+  userId: 11,
+  title: "Cream of the Crop",
+  description: "Inspired tracks sampling WWE history",
+  imageUrl: "https://www.biography.com/.image/t_share/MTc5Mzk0NDcxNjk0MTgxNzA5/macho01_ba.jpg",
+  url:'https://res.cloudinary.com/degkakjou/video/upload/v1666291205/dion_dy5rmf.mp3',
+},
+{
+  userId: 12,
+  title: "Straight Out of 4th Grade",
+  description: "Fuck them kids",
+  imageUrl: "https://i.imgflip.com/2wurrf.png",
+  url:'https://res.cloudinary.com/degkakjou/video/upload/v1666291783/Kyle_b7gcl6.mp3',
+},
+{
+  userId: 13,
+  title: "Spellin Bee Hard",
+  description: "Ayoooo",
+  imageUrl: "https://www.readabilitytutor.com/wp-content/uploads/2020/08/my-child-is-struggling-with-reading.jpg",
+  url:'https://res.cloudinary.com/degkakjou/video/upload/v1666291204/Ben_k4h4px.mp3',
+},
+{
+  userId: 14,
+  title: "Watermelon Friendships",
+  description: "What does it mean",
+  imageUrl: "https://c8.alamy.com/comp/F5WYKC/bizarre-farmer-drinking-watermelon-juice-through-a-tubules-F5WYKC.jpg",
+  url:'https://res.cloudinary.com/degkakjou/video/upload/v1666292097/Matt_vtfp2k.mp3',
+},
 ];
 
 module.exports = {
