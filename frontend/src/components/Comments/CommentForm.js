@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from 'react-router-dom';
 
 import { createComment } from '../../store/comments';
-
+import ErrorList from '../ErrorList';
 
 const CommentForm = () => {
   const dispatch = useDispatch()
@@ -11,7 +11,7 @@ const CommentForm = () => {
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setSubmitted] = useState(false)
-  const user = useSelector(state => state.session.User)
+  const user = useSelector(state => state.session.user)
   useEffect(() => {
     if(hasSubmitted === true){
 
@@ -26,6 +26,8 @@ const CommentForm = () => {
     const validationerrors = [];
     // if(!user) validationerrors.push('Please login to post a comment')
     if(body.length <= 0) validationerrors.push('Please input a comment before submission')
+    if(body.length >=256) validationerrors.push('Comments cannot exceed 256 characters')
+    if(!user?.id) validationerrors.push('Please sign-in to leave a comment.')
     return  validationerrors;
   }
 
@@ -35,6 +37,7 @@ const CommentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setSubmitted(true)
     const errors = validate();
 
@@ -63,16 +66,8 @@ const CommentForm = () => {
           value={body}
           onChange={updateComment}
           />
-          {hasSubmitted && errors.length > 0 && (
-            <div>
+               <ErrorList id={'comment-errors'} errors={errors}/>
 
-                        <ul>
-                            {errors.map((error) => (
-                                <li key={error}>{error}</li>
-                            ))}
-                        </ul>
-            </div>
-                )}
       </form>
     </section>
   );

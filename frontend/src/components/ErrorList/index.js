@@ -1,6 +1,6 @@
 import './index.css'
 
-function ErrorList({errors}) {
+function ErrorList({errors, id}) {
 
   const errorBorder = '2px solid rgba(222, 8, 26, 0.8)'
   const nodes = document.getElementsByTagName('form');
@@ -15,9 +15,8 @@ function ErrorList({errors}) {
             if(formPH === "Audio URL" && errors.includes('Please input an audio source url')){
               form.style.border = errorBorder
             }
-            if(formPH === "Image URL" && errors.includes('Please input an image source url')){
-              form.style.border = errorBorder
-            }
+            if(formPH === "Album ID" && errors.includes('Please select a valid albumId')){
+              form.style.border = errorBorder}
             if(formPH === "Username or Email" && errors.includes('Please provide a valid email or username.')){
               form.style.border = errorBorder
             }
@@ -42,7 +41,7 @@ function ErrorList({errors}) {
 
   return (
 
-            <ul className='error-list'>
+            <ul className='error-list' id={id}>
                 {errors.map((error) => (
                             <li key={error}><i className='fa fa-exclamation-circle' />  {error}</li>
                         ))}

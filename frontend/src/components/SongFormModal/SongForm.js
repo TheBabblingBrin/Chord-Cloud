@@ -56,8 +56,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
     const validationerrors = [];
     if(title.length <= 0) validationerrors.push('Please input a song title')
     if(url.length <= 0) validationerrors.push('Please input an audio source url')
-    if(imageUrl.length <= 0) validationerrors.push('Please input an image source url')
-
+    if(albumId <=0)validationerrors.push('Please select a valid albumId')
     ///TODO Album ID ownership validations once Albums are implemented
 
     return  validationerrors;
