@@ -9,6 +9,8 @@
 .splash-page-other{
   position: relative;
   top: 46px;
+  height: fit-content;
+  min-height: 1200px;
 }
 
 .search-div button{

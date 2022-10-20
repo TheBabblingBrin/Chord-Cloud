@@ -47,16 +47,18 @@ let content = null
 
   <div className='comment-song'>
     <div className='comment-portrait'></div>
+  <div className='comment-item-meta'>
     <span className='comment-username'>
       {comment.User.username}
     </span>
+   <div className='comment-end'>
+     {date}
+    {buttons}
+    </div>
+  </div>
     <p>
       {comment.body}
     </p>
-  <div className='comment-item-meta'>
-    {date}
-    {buttons}
-  </div>
   </div>
 ):
   content = null

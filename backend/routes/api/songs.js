@@ -14,7 +14,7 @@ check('url')
   .exists({ checkFalsy: true })
   .notEmpty()
   .withMessage("Audio is required"),
-check('title')
+check('description')
   .isLength({max: 250 })
   .withMessage("Song description must be less than 250 characters"),
 check('albumId')

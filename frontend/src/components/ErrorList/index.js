@@ -46,6 +46,8 @@ function ErrorList({errors, id}) {
               form.style.border = errorBorder}
             if(formPH === "Confirm Password" && errors.includes('Confirm Password field must be the same as the Password field')){
               form.style.border = errorBorder}
+            if(formPH === "Description" && errors.includes("Song description must be less than 250 characters")){
+                form.style.border = errorBorder}
 
        }
       }

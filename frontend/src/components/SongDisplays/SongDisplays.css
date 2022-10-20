@@ -156,7 +156,10 @@ align-content: flex-start;
   position: relative;
   right: -2px;
 }
-
+.song-description{
+  font-size: 16px;
+  margin: 5px 20px 20px 0px;
+}
 #song-updated-at{
   color:#FCFCF4;
   font-size: 16px;
@@ -202,7 +205,8 @@ align-content: flex-start;
 }
 
 .listening-wrapper-main{
-  height: 564px;
+  min-height: 564px;
+  height: fit-content;
   width: 1180px;
   align-self: center;
   margin-top: 20px;
@@ -213,7 +217,8 @@ align-content: flex-start;
   border-right: 1px solid rgba(60, 64, 71, .1);
   display: flex;
   align-self: flex-start;
-  height: 544px;
+  min-height: 564px;
+  height: fit-content;
   width: 840px;
   padding-right: 10px;
 }
