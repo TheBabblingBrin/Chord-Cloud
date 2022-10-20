@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from 'react-router-dom';
 
-import { createComment } from '../../store/comments';
+import { createComment, getAllComments } from '../../store/comments';
 import ErrorList from '../ErrorList';
 
 const CommentForm = () => {
@@ -52,6 +52,7 @@ const CommentForm = () => {
       if(createdComment){
         setSubmitted(false)
         setBody('')
+        setErrors([])
       }
     }
 
@@ -66,7 +67,7 @@ const CommentForm = () => {
           value={body}
           onChange={updateComment}
           />
-               <ErrorList id={'comment-errors'} errors={errors}/>
+               {errors.length > 0 && <ErrorList id={'comment-errors'} errors={errors}/>}
 
       </form>
     </section>
