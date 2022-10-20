@@ -7,10 +7,19 @@ const validateSong = [
   .exists({ checkFalsy: true })
   .notEmpty()
   .withMessage("Song title is required"),
+  check('title')
+  .isLength({ min: 4, max: 200 })
+  .withMessage("Song title must be between 4 and 200 characters"),
 check('url')
   .exists({ checkFalsy: true })
   .notEmpty()
   .withMessage("Audio is required"),
+check('title')
+  .isLength({max: 250 })
+  .withMessage("Song description must be less than 250 characters"),
+check('albumId')
+  .isInt({min: 1, max: 100000000})
+  .withMessage('Please select a valid Album ID'),
 handleValidationErrors
 ];
 const validateComment = [

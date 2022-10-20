@@ -31,9 +31,6 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   useEffect(() => {
     if(hasSubmitted === true){
 
-      const errors = validate();
-
-      errors.length > 0? setErrors(errors): setErrors([])
     }
 
   },[title, url, imageUrl, setSubmitted])
@@ -52,23 +49,12 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
     }>Demo Song</button>)
   }
 
-  const validate = () => {
-    const validationerrors = [];
-    if(title.length <= 0) validationerrors.push('Please input a song title')
-    if(url.length <= 0) validationerrors.push('Please input an audio source url')
-    if(albumId <=0)validationerrors.push('Please select a valid albumId')
-    ///TODO Album ID ownership validations once Albums are implemented
 
-    return  validationerrors;
-  }
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true)
-    const errors = validate();
-
-    if (errors.length > 0) {return setErrors(errors);}
 
 
     const payload = {
@@ -80,9 +66,26 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
       albumId
     };
     let createdSong;
-   formType === 'createSong'? createdSong = await dispatch(uploadSong(payload)): createdSong = await dispatch(updateSong(payload));
+   if(formType === 'createSong'){
+     createdSong = await dispatch(uploadSong(payload))
+     .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+
+    });
+    // setSubmitted(false)
+
+   }else{
+
+     createdSong = await dispatch(updateSong(payload))
+     .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
+  }
+  // setSubmitted(false)
+
    if (createdSong) {
-      setSubmitted(false)
       setShowModal(false)
        history.push(`/songs/${createdSong.id}`);
     }
@@ -126,7 +129,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
         />
         <button
           type="submit"
-          disabled={errors.length > 0}
+          // disabled={errors.length > 0}
         >{formType === 'createSong'? 'Upload Song':'Update Song'}</button>
         {demoSong}
         {hasSubmitted && errors?.length > 0 && (

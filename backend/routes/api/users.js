@@ -7,26 +7,36 @@ const router = express.Router();
 const validateSignup = [
   check('firstName')
     .exists({ checkFalsy: true })
+    .isLength({ min: 1, max:255 })
     .withMessage("First Name is required"),
+ check('firstName')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1, max:100 })
+    .withMessage("First Name must be between 1 and 100 characters"),
   check('lastName')
     .exists({ checkFalsy: true })
     .withMessage("Last Name is required"),
+   check('lastName')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1, max:100 })
+    .withMessage("Last Name must be between 1 and 100 characters"),
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
+    .isLength({ min: 4, max: 200 })
     .withMessage('Please provide a valid email.'),
   check('username')
     .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    .isLength({ min: 4, max: 50 })
+    .withMessage('Please provide a username between 4 and 50 characters.'),
   check('username')
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
   check('password')
     .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
+    .isLength({ min: 6, max: 30})
+    .withMessage('Password must be 6 and 30 characters.'),
   handleValidationErrors
 ];
 

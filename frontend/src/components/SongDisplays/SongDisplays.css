@@ -1,3 +1,9 @@
+.sound-container-img,
+.comment-user-image input,
+.listen-artist-details input{
+  cursor: unset;
+}
+
 .play-button{
   background-color: #3C4047;
   border: 1px transparent solid;
