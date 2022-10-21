@@ -59,7 +59,7 @@ body link:hover{
 #root{
   background-color: whitesmoke;
   max-width: 1240px;
-  min-width: 1024px;
+  /* min-width: 1024px; */
 }
 ::-webkit-scrollbar {
   width: 15px;

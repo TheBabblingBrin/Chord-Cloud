@@ -1,8 +1,10 @@
 .splash-page{
   display: flex;
   flex-direction: column;
-  width: 1240px;
-  height: 1100px;
+  align-items: center;
+  max-width: 1240px;
+  min-height: 1100px;
+
   background-color: whitesmoke;
 }
 
