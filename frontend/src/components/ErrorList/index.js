@@ -26,7 +26,7 @@ function ErrorList({errors, id}) {
             if(formPH === "Audio URL" && errors.includes('Audio is required')){
               form.style.border = errorBorder
             }
-            if(formPH === "Album ID" && errors.includes('Please select a valid Album ID')){
+            if(formPH === "Album ID" && (errors.includes('Please select a valid Album ID')|| errors.includes('Album does not exist'))){
               form.style.border = errorBorder}
             if(formPH === "Username or Email" && errors.includes('Please provide a valid email or username.')){
               form.style.border = errorBorder

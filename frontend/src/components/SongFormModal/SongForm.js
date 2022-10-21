@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
+import { loadAlbums } from '../../store/albums';
 
 import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
 import { updateSong, uploadSong } from '../../store/songs';
@@ -27,8 +28,10 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const updateAlbumId = (e) => setAlbumId(e.target.value);
 
   const user = useSelector(state => state.session.user)
+  const albums = useSelector(state => Object.keys(state.albums))
 
   useEffect(() => {
+    dispatch(loadAlbums())
     if(hasSubmitted === true){
 
     }
@@ -55,8 +58,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true)
-
-
+    const validationErrors = []
     const payload = {
       ...song,
       title,
@@ -65,12 +67,16 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
       imageUrl,
       albumId
     };
+    if(!(albums.includes(albumId))) validationErrors.push('Album does not exist')
+
     let createdSong;
    if(formType === 'createSong'){
      createdSong = await dispatch(uploadSong(payload))
      .catch(async (res) => {
       const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
+      if (data && data.errors)
+      validationErrors.push(...data.errors)
+      setErrors(validationErrors)
 
     });
     // setSubmitted(false)
@@ -80,7 +86,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
      createdSong = await dispatch(updateSong(payload))
      .catch(async (res) => {
       const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
+      if (data && data.errors) setErrors([...errors, ...data.errors]);
     });
   }
   // setSubmitted(false)
