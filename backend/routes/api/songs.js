@@ -17,9 +17,6 @@ check('url')
 check('description')
   .isLength({max: 250 })
   .withMessage("Song description must be less than 250 characters"),
-check('albumId')
-  .isInt({min: 1, max: 100000000})
-  .withMessage('Please select a valid Album ID'),
 handleValidationErrors
 ];
 const validateComment = [

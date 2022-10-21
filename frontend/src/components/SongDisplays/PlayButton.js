@@ -12,13 +12,15 @@ const PlayButton = ({ song }) => {
   const playing = useSelector(state => state.songs.playing)
 
   useEffect(()=>{
-    // if(!currentSong || !currentSong.id){
-    //   return
-    // }
-    playing === true && currentSong.id === song.id?
+    const pressed = document.getElementById(`play-id-${song.id}`)
+    if(playing === true && currentSong.id === song.id){
+      setButton(<i className="fa-solid fa-pause"></i>)
+      // pressed.style.opacity = '1'
+    }else{
+      setButton(<i className="fa-solid fa-play"></i>)
+      // pressed.style.opacity = '0'
+    }
 
-    setButton(<i className="fa-solid fa-pause"></i>):
-    setButton(<i className="fa-solid fa-play"></i>)
 
   },[playing, currentSong, dispatch])
 
@@ -27,6 +29,7 @@ const PlayButton = ({ song }) => {
   return (
       <button
       className='play-button'
+      id={`play-id-${song.id}`}
       onClick={()=>
         dispatch(setCurrentSong(song))}>
         {button}

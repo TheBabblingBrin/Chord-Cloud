@@ -26,6 +26,8 @@ let center = null
  const setClasses= homeURLs.includes(url)?
  (navClasses = 'nav-bar', center = 'center center-splash'): (navClasses = 'nav-bar nav-dark', center = 'center');
 
+ const logoClasses = homeURLs.includes(url)? 'logo logo-home':'logo'
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -43,7 +45,7 @@ let center = null
   return (
     <div className={navClasses}>
       <div className={center}>
-        <div className='logo'>
+        <div className={logoClasses}>
         <input
         type='image'
         src='https://i.postimg.cc/Xq3MFwFN/chord-Cloud-Full-filled.png'

@@ -59,6 +59,9 @@ export const getOneSong = (songId) => async dispatch => {
 
 //CREATE SONG
 export const uploadSong = (song) => async dispatch => {
+  if(song.imageUrl === ''){
+    song.imageUrl = 'https://res.cloudinary.com/degkakjou/image/upload/v1666387344/DALL_E_2022-10-21_17.15.36_-_an_album_cover_with_a_record_made_from_bone_in_the_style_of_vaporware_njte74.png'
+  }
   const response = await csrfFetch('/api/songs', {
     method: "POST",
     headers: { "Content-Type": "application/json" },

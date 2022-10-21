@@ -87,6 +87,10 @@ right: -100px;
   height: 100%;
 }
 
+.logo-home input{
+  cursor: unset;
+}
+
 .banner-buttons{
   display: flex;
   justify-content: space-evenly;

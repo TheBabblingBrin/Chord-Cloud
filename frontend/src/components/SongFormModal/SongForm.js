@@ -16,7 +16,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const [description, setDescription] = useState(song? song.description:'' );
   const [url, setUrl] = useState(song? song.url: '');
   const [imageUrl, setImage] = useState(song? song.imageUrl:'' );
-  const [albumId, setAlbumId] = useState(song? song.albumId: '');
+  const [albumId, setAlbumId] = useState(song? song.albumId: null);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setSubmitted] = useState(false)
 
@@ -28,7 +28,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const updateAlbumId = (e) => setAlbumId(e.target.value);
 
   const user = useSelector(state => state.session.user)
-  const albums = useSelector(state => Object.keys(state.albums))
+  // const albums = useSelector(state => Object.keys(state.albums))
 
   useEffect(() => {
     dispatch(loadAlbums())
@@ -47,7 +47,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
       setDescription('dev test');
       setImage('https://cdn.pixabay.com/audio/2022/08/05/13-29-08-266_200x200.png');
       setUrl('https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3');
-      setAlbumId(1)
+      // setAlbumId(1)
     }
     }>Demo Song</button>)
   }
@@ -59,6 +59,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
     e.preventDefault();
     setSubmitted(true)
     const validationErrors = []
+  
     const payload = {
       ...song,
       title,
@@ -67,7 +68,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
       imageUrl,
       albumId
     };
-    if(!(albums.includes(albumId))) validationErrors.push('Album does not exist')
+    // if(!(albums.includes(albumId))) validationErrors.push('Album does not exist')
 
     let createdSong;
    if(formType === 'createSong'){
@@ -127,12 +128,12 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
           value={imageUrl}
           onChange={updateImage}
         />
-         <input
+         {/* <input
           type="number"
           placeholder="Album ID"
           value={albumId}
           onChange={updateAlbumId}
-        />
+        /> */}
         <button
           type="submit"
           // disabled={errors.length > 0}

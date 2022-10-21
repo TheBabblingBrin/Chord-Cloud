@@ -79,3 +79,7 @@ body link:hover{
   border-radius: 3px;
   margin-top: 12px
 }
+
+.play-button:has(> .fa-pause){
+  opacity: 1;
+}
