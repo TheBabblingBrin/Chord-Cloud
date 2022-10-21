@@ -17,7 +17,7 @@ function SongFormModal({formType, song, style}) {
       className={style}
       onClick={() => {
         setShowModal(true)
-      }}>{formType === 'editSong'? 'Update':'Upload your own'}</button>
+      }}>{formType === 'editSong'? <i class="fa-solid fa-pen-to-square"></i>:'Upload your own'}</button>
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

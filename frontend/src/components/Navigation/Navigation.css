@@ -44,14 +44,15 @@
 .nav-dark > .banner-buttons >
 .user-profile-options > .profile-button{
   position: relative;
-  top: 0;
+  top: -5px;
   right: -90px;
 }
 
 .nav-dark > .banner-buttons >
 .user-profile-options > .profile-dropdown{
-  top: 40px;
-  right: -128px;
+position: absolute;
+top: 35px;
+right: -100px;
 
 }
 
@@ -132,8 +133,8 @@
 }
 
 .profile-dropdown{
-  position: relative;
-  right: -30px;
+  position: absolute;
+  right: 0px;
   display: flex;
   flex-direction: column;
   background-color: #FCFCF4;
@@ -181,9 +182,8 @@
 
 }
 
-.profile-button span:nth-child(2){
-  margin-left: 10px;
-  background-color: red;
+.profile-dropdown span:nth-child(2){
+  margin-left: 35px;
 }
 
 

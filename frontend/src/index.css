@@ -61,8 +61,17 @@ body link:hover{
   max-width: 1240px;
   min-width: 1024px;
 }
-
-
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  /* background-color: #3C4047; */
+  background: #FCFCF4;
+  border: 1px #3C4047 solid;
+}
+::-webkit-scrollbar-thumb {
+  background: #3C4047;
+}
 .cb-button{
   height: 26px;
   background-color: transparent;
