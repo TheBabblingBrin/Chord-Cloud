@@ -112,6 +112,8 @@ align-content: flex-start;
 
 .badge-details a{
   margin-left: 0px;
+  margin-top: 3px;
+  margin-bottom:-3px;
   opacity: 2 !important;
 }
 .badge-details p{
