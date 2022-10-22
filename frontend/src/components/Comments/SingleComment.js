@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import { useHistory, Redirect } from 'react-router-dom';
 
 import { removeComment } from '../../store/comments';
-
+const dayjs = require('dayjs')
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
 
 
 
@@ -27,7 +29,9 @@ const handleDelete = async () =>{
   }
 }
 
-const date = new Date(comment?.updatedAt).toLocaleDateString()
+// const date = new Date(comment?.updatedAt).toLocaleDateString()
+console.log(comment.updatedAt)
+const date = dayjs(comment?.updatedAt).fromNow(false)
 let buttons = null
 if(user){
 
@@ -52,7 +56,7 @@ let content = null
       {comment.User.username}
     </span>
    <div className='comment-end'>
-     {date}
+     {date === 'in a few seconds'? 'a few seconds ago': date}
     {buttons}
     </div>
   </div>

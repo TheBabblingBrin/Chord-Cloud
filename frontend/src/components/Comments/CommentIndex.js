@@ -6,6 +6,7 @@ import { loadCommentsBySongId } from '../../store/comments';
 import CommentForm from './CommentForm';
 import SingleComment from './SingleComment';
 import CommentBar from './CommentBar';
+const dayjs = require('dayjs')
 
 
 

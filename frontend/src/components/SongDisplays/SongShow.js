@@ -12,7 +12,9 @@ import { loadCommentsBySongId } from '../../store/comments';
 import PlayButton from './PlayButton';
 import { getURL } from '../../store/session';
 import ListeningDetails from './ListeningDetails';
-
+const dayjs = require('dayjs')
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
 
 const SongShow =  () => {
   const dispatch = useDispatch()
@@ -42,8 +44,7 @@ const SongShow =  () => {
 
 
 
-const date = new Date(song?.updatedAt).toLocaleDateString()
-
+  const date = dayjs(song?.updatedAt).fromNow(false)
 
 
   return (
@@ -63,7 +64,7 @@ const date = new Date(song?.updatedAt).toLocaleDateString()
       <span>{song?.User?.username}</span>
       </div>
     </div>
-    <span id='song-updated-at'>{song.updatedAt === song.createdAt? 'Uploaded on': 'Updated on'} {date}</span>
+    <span id='song-updated-at'>{song.updatedAt === song.createdAt? 'Uploaded': 'Updated'} {date === 'in a few seconds'? 'a few seconds ago': date}</span>
     <input
     className="sound-container-img"
     type="image"
