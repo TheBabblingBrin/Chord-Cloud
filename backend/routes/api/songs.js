@@ -14,6 +14,12 @@ check('url')
   .exists({ checkFalsy: true })
   .notEmpty()
   .withMessage("Audio is required"),
+check('url')
+  .custom(url=> /^https?:\/\/.+\.(mp3|MP3)$/.test(url))
+  .withMessage('Please use a valid Audio URL (e.g. https://example.mp3)'),
+check('imageUrl')
+  .custom(imageUrl => /^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl))
+  .withMessage(`Please use a valid Image URL (e.g. https://example.jpg)`),
 check('description')
   .isLength({max: 250 })
   .withMessage("Song description must be less than 250 characters"),

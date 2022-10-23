@@ -59,7 +59,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
     e.preventDefault();
     setSubmitted(true)
     const validationErrors = []
-  
+
     const payload = {
       ...song,
       title,
@@ -68,8 +68,6 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
       imageUrl,
       albumId
     };
-    // if(!(albums.includes(albumId))) validationErrors.push('Album does not exist')
-
     let createdSong;
    if(formType === 'createSong'){
      createdSong = await dispatch(uploadSong(payload))

@@ -18,12 +18,16 @@ function ErrorList({errors, id}) {
     if(node?.hasChildNodes()){
       for( let form of node.childNodes.values()){
        if(form.nodeName === 'INPUT') {
+        console.log(form.value)
         let formPH = form.placeholder
             form.style.border = noErrorBorder
             if(formPH === 'Title' && (errors.includes('Song title is required') || errors.includes('Song title must be between 4 and 200 characters'))){
               form.style.border = errorBorder
             }
-            if(formPH === "Audio URL" && errors.includes('Audio is required')){
+            if(formPH === "Audio URL" &&(errors.includes('Audio is required')|| errors.includes('Please use a valid Audio URL (e.g. https://example.mp3)')) ){
+              form.style.border = errorBorder
+            }
+            if(formPH === "Image URL" && errors.includes("Please use a valid Image URL (e.g. https://example.jpg)") ){
               form.style.border = errorBorder
             }
             if(formPH === "Album ID" && (errors.includes('Please select a valid Album ID')|| errors.includes('Album does not exist'))){
@@ -59,7 +63,7 @@ function ErrorList({errors, id}) {
 
             <ul className='error-list' id={id}>
                 {errors.map((error) => (
-                            <li key={error}><i className='fa fa-exclamation-circle' />  {error}</li>
+                            <li key={error}><i className='fa fa-exclamation-circle' /> {error} </li>
                         ))}
             </ul>
   )
