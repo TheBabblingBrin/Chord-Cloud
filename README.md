@@ -65,6 +65,7 @@ HOSTING:
 
 ***
 ## Example Features
+# Splash page
 ![chordCloud](https://i.imgur.com/6u4YFwH.png)
 
 ***
