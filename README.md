@@ -70,7 +70,7 @@ HOSTING:
 * On load the site defaults to this landing page. From this page you can login, create, an account, upload songs, and listen to recently uploaded tracks.
 * Clicking the 'Create Account', 'Log In', or 'Upload your own' buttons will launch the relevant modal depending on if you are logged in.
 * Example modal and error handling upon submission can be seen below
-* ![errorModal](https://i.imgur.com/yCEF0VA.png)
+![errorModal](https://i.imgur.com/yCEF0VA.png)
 * Sucessful log ins render a profile button with clickable dropdown menu containing user information and the log out button
 ![dropdown](https://i.imgur.com/Rzr0o4U.png)
 
