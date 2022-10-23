@@ -18,7 +18,6 @@ const Player = () => {
     changeSrc(song.url)
       if(playState === true){
         player.current.audio.current.play();
-        player.current.audio.current.volume = 0.2
       } else{
         player.current.audio.current.pause();
 
@@ -52,6 +51,7 @@ const Player = () => {
       autoPlayAfterSrcChange={true}
       layout="horizontal-reverse"
       src={source}
+      volume={.2}
     />
     <div className='song-preview'>
 
