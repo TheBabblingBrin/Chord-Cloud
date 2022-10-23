@@ -69,6 +69,8 @@ HOSTING:
 ![chordCloud](https://i.imgur.com/D6aeVFE.png)
 * On load the site defaults to this landing page. From this page you can login, create, an account, upload songs, and listen to recently uploaded tracks.
 * Clicking the 'Create Account', 'Log In', or 'Upload your own' buttons will launch the relevant modal depending on if you are logged in.
+* Clicking 'Demo-user' logs in with a user intended for feature testing. This user acts like a regular user but also allows access to the 'DEMO Song' button
+* The 'Demo Song' button populates the upload form with placeholder data to rapidly test features related to song creation/updating
 * Example modal and error handling upon submission can be seen below
 ![errorModal](https://i.imgur.com/yCEF0VA.png)
 * Sucessful log ins render a profile button with clickable dropdown menu containing user information and the log out button
