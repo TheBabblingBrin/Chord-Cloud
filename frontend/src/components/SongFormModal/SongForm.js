@@ -115,13 +115,13 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
           onChange={updateDescription}
         />
         <input
-          type="url"
+          type="text"
           placeholder="Audio URL"
           value={url}
           onChange={updateUrl}
         />
          <input
-          type="url"
+          type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImage}
