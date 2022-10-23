@@ -18,6 +18,7 @@ const Player = () => {
     changeSrc(song.url)
       if(playState === true){
         player.current.audio.current.play();
+        player.current.audio.current.volume = 0.2
       } else{
         player.current.audio.current.pause();
 

@@ -99,7 +99,9 @@ body link:hover{
     {
       max-width: 1000px;
     }
-
+    .badge-details{
+      margin-top: 20px;
+    }
   .center{
     width: 1000px !important;
     margin-left: -500px !important;
@@ -112,7 +114,7 @@ body link:hover{
 
   .play-button{
     top: 70% !important;
-    
+
   }
 
 
