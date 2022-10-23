@@ -84,9 +84,9 @@ HOSTING:
 ### Song Details Page
 ![songDetails](https://i.imgur.com/0Cpc6pV.png)
 * From this page you can view relevant track details including a dynamic updated/createdAt timestamp
-* Playstate is consisten with splash page and can be changed with the play button
-* Below the comment bar artist can delete or update their owned tracks. These buttons do not render for unowned content
-* Updates are rendered on form submission. Deletions take your back to the splash page.
+* Playstate is consistent with splash page and can be changed with the play button
+* Below the comment bar, artist can delete or update their owned tracks. These buttons do not render for unowned content
+* Updates are rendered on form submission. Deletions take you back to the splash page.
 
 ### Song Comments
 ![songComments](https://i.imgur.com/SlLy1ls.png)
