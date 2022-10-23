@@ -12,6 +12,7 @@ footer{
   background-color: #3C4047 ;
   font-size: 12px;
   color:#FCFCF4;
+  z-index: 4;
 }
 
 html {
@@ -42,6 +43,7 @@ body link:hover{
   box-shadow: none !important;
   width: 70% !important;
   max-width: 1100px !important;
+
 }
 
 .rhap_container svg,
