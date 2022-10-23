@@ -66,6 +66,33 @@ HOSTING:
 ***
 ## Example Features
 ### Splash page
-![chordCloud](https://i.imgur.com/6u4YFwH.png)
+![chordCloud](https://i.imgur.com/D6aeVFE.png)
+-On load the site defaults to this landing page. From this page you can login, create, an account, upload songs, and listen to recently uploaded tracks.
+-Clicking the 'Create Account', 'Log In', or 'Upload your own' buttons will launch the relevant modal depending on if you are logged in.
+-Example modal and error handling upon submission can be seen below
+![errorModal](https://i.imgur.com/yCEF0VA.png)
+-Sucessful log ins render a profile button with clickable dropdown menu containing user information and the log out button
+![dropdown](https://i.imgur.com/Rzr0o4U.png)
+
+### Trending tracks
+![trendingTracks](https://i.imgur.com/aDSlq7f.png)
+-Hovering over any song image brings up a play button which will launch the sourced audio in the audio player. This playstate is consisten across other site pages
+-Clicking the image or song title below will bring you to the relevant song details page
+
+### Song Details Page
+![songDetails](https://i.imgur.com/0Cpc6pV.png)
+-From this page you can view relevant track details including a dynamic updated/createdAt timestamp
+-Playstate is consisten with splash page and can be changed with the play button
+-Below the comment bar artist can delete or update their owned tracks. These buttons do not render for unowned content
+-Updates are rendered on form submission. Deletions take your back to the splash page.
+
+### Song Comments
+![songComments](https://i.imgur.com/SlLy1ls.png)
+-Song comments can be left via the comments form on the song details page
+-Error handling can be seen in the provided screen shot
+-Successful comments will be posted below the form with dynamic timestamps
+-Owned comments can be deleted via button that appears on hover
+![songCommentList](https://i.imgur.com/uJOzhlM.png)
+
 
 ***
