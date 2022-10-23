@@ -22,14 +22,16 @@ const SongIndexItem = ({ song }) => {
   return (
     <div className='splash-badge'>
       <div className='hover-image'>
-     <PlayButton song={song} />
+        <PlayButton song={song} />
       <input
         className='song-image'
       type='image'
       src={song.imageUrl}
       onClick={()=>
         history.push(`/songs/${song.id}`)}
-      ></input>
+      >
+
+      </input>
       </div>
       <div className='badge-details'>
         <Link to={`/songs/${song.id}`}>

@@ -11,7 +11,8 @@
  color: #FCFCF4;
  text-align: center;
  border-top: 5px solid #FCFCF4;
-
+background-size: auto;
+background-position: center;
 }
 
 .banner-screen{

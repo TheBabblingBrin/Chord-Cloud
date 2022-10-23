@@ -57,8 +57,11 @@ body link:hover{
 }
 
 #root{
+  display: flex;
+  justify-content: center;
   background-color: whitesmoke;
   max-width: 1240px;
+  min-height: 1250px;
   /* min-width: 1024px; */
 }
 ::-webkit-scrollbar {
@@ -82,4 +85,55 @@ body link:hover{
 
 .play-button:has(> .fa-pause){
   opacity: 1;
+}
+
+@media (max-width: 1230px) {
+    .banner-screen,
+    .banner,
+    .splash-page
+    .splash-page.splash-page-other,
+    .listening-wrapper-main,
+    .song-details-banner,
+    .song-banner-bg,
+    #root
+    {
+      max-width: 1000px;
+    }
+
+  .center{
+    width: 1000px !important;
+    margin-left: -500px !important;
+  }
+  .listening-wrapper-left,
+  .comment-bar-wrapper
+  {
+    margin-left: 20px;
+  }
+
+  .play-button{
+    top: 70% !important;
+  }
+
+
+    .splash-box {
+      display: grid;
+      grid-template-columns: repeat(4, 150px);
+      gap: 2%;
+      position: relative;
+      top: 0px;
+      max-width: 900px;
+      margin-top: 40px;
+
+
+    }
+
+    .song-image,
+    .hover-image{
+      min-height: 140px !important;
+      min-width: 140px !important;
+      max-height: 140px !important;
+      max-width: 140px !important;
+      margin-bottom: 3px;
+    }
+
 }

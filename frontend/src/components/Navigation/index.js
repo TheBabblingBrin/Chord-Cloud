@@ -53,11 +53,11 @@ let center = null
         onClick={()=> history.push('/')}
         ></input>
         </div>
-      </div>
     <div className='banner-buttons'>
         {isLoaded && sessionLinks}
         {/* {navClasses && } */}
     </div>
+      </div>
     </div>
   );
 }
