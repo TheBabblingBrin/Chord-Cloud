@@ -72,7 +72,7 @@ HOSTING:
 * Example modal and error handling upon submission can be seen below
 * ![errorModal](https://i.imgur.com/yCEF0VA.png)
 * Sucessful log ins render a profile button with clickable dropdown menu containing user information and the log out button
-* ![dropdown](https://i.imgur.com/Rzr0o4U.png)
+![dropdown](https://i.imgur.com/Rzr0o4U.png)
 
 ### Trending tracks
 ![trendingTracks](https://i.imgur.com/aDSlq7f.png)
@@ -92,7 +92,7 @@ HOSTING:
 * Error handling can be seen in the provided screen shot
 * Successful comments will be posted below the form with dynamic timestamps
 * Owned comments can be deleted via button that appears on hover
-* ![songCommentList](https://i.imgur.com/uJOzhlM.png)
+![songCommentList](https://i.imgur.com/uJOzhlM.png)
 
 
 ***
