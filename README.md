@@ -22,7 +22,7 @@ npm start
 cd ../frontend/
 npm start
 ```
-The site should not launch in your default browser. If not check http://localhost:3000/ replacing 3000 with any port changes you made prior.
+The site should now launch in your default browser. If not check http://localhost:3000/ replacing 3000 with any port changes you made prior.
 ***
 
 [API-DOCUMENTATION](https://github.com/TheBabblingBrin/Chord-Cloud/wiki/API-DOCUMENTATION)
@@ -68,4 +68,3 @@ HOSTING:
 ![chordCloud](https://i.imgur.com/6u4YFwH.png)
 
 ***
-
