@@ -13,7 +13,7 @@ const SongsIndex = () => {
 
   let songs = useSelector(getAllSongs);
   if(songs.length > 12){
-    songs = songs.slice(songs.length-12, songs.length)
+    songs = songs.slice(songs.length-12, songs.length).reverse()
   }
   if(!songs){
     return (<h2>LOADING</h2>)

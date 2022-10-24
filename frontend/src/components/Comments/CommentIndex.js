@@ -18,7 +18,7 @@ const CommentsIndex= ({song, songId}) => {
     dispatch(loadCommentsBySongId(songId));
   }, [dispatch, comments.length])
 
-  const songComments = comments.filter(comment => comment.songId == songId)
+  const songComments = comments.filter(comment => comment.songId == songId).reverse()
 
   return (
     <div className='comment-index'>
