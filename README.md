@@ -78,7 +78,7 @@ HOSTING:
 
 ### Trending tracks
 ![trendingTracks](https://i.imgur.com/aDSlq7f.png)
-* Hovering over any song image brings up a play button which will launch the sourced audio in the audio player. This playstate is consisten across other site pages
+* Hovering over any song image brings up a play button which will launch the sourced audio in the audio player. This playstate is consistent across other site pages
 * Clicking the image or song title below will bring you to the relevant song details page
 
 ### Song Details Page
