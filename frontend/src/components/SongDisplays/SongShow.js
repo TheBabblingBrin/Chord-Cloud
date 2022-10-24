@@ -12,6 +12,7 @@ import { loadCommentsBySongId } from '../../store/comments';
 import PlayButton from './PlayButton';
 import { getURL } from '../../store/session';
 import ListeningDetails from './ListeningDetails';
+import AudioWave from '../AudioWave';
 const dayjs = require('dayjs')
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
@@ -24,14 +25,15 @@ const SongShow =  () => {
   const singlesong = useSelector((state) => state.songs.singleSong)
   const song = useSelector((state) => state.songs.allSongs[songId]);
   const [showUpdateSongForm, setShowUpdateSongForm] = useState(false);
+
+
   useEffect(() => {
     dispatch(getURL())
     dispatch(loadCommentsBySongId(songId))
     dispatch(getOneSong(songId))
+}, [dispatch, songId])
 
-  }, [dispatch, songId])
-
-  if(!song|| !song.User){
+if(!song|| !song.User){
     setTimeout(()=>{
       dispatch(getOneSong(songId))
     }, 0)
@@ -71,6 +73,9 @@ const SongShow =  () => {
     src={song.imageUrl}>
     </input>
     </div>
+    {/* <div id='#waveform'>
+      <AudioWave song={song}/>
+    </div> */}
     <div className='song-banner-bg'
     style={{backgroundImage: `url(${song.imageUrl})`}}>
     </div>

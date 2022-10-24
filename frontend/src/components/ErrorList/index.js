@@ -18,7 +18,6 @@ function ErrorList({errors, id}) {
     if(node?.hasChildNodes()){
       for( let form of node.childNodes.values()){
        if(form.nodeName === 'INPUT') {
-        console.log(form.value)
         let formPH = form.placeholder
             form.style.border = noErrorBorder
             if(formPH === 'Title' && (errors.includes('Song title is required') || errors.includes('Song title must be between 4 and 200 characters'))){
@@ -42,7 +41,7 @@ function ErrorList({errors, id}) {
               form.style.border = errorBorder}
             if(formPH === "Last Name" && (errors.includes('Last Name is required') || errors.includes('Last Name must be between 1 and 100 characters'))){
               form.style.border = errorBorder}
-            if(formPH === "Email" && errors.includes('Please provide a valid email.')){
+            if(formPH === "Email" && (errors.includes('Please provide a valid email.')|| errors.includes('email must be unique'))){
                 form.style.border = errorBorder}
             if(formPH === "Username" && errors.includes('Please provide a username between 4 and 50 characters.')){
               form.style.border = errorBorder}
@@ -51,6 +50,8 @@ function ErrorList({errors, id}) {
             if(formPH === "Confirm Password" && errors.includes('Confirm Password field must be the same as the Password field')){
               form.style.border = errorBorder}
             if(formPH === "Description" && errors.includes("Song description must be less than 250 characters")){
+                form.style.border = errorBorder}
+            if(formPH === "Username" && errors.includes("username must be unique")){
                 form.style.border = errorBorder}
 
        }

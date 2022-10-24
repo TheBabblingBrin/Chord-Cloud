@@ -29,8 +29,6 @@ const handleDelete = async () =>{
   }
 }
 
-// const date = new Date(comment?.updatedAt).toLocaleDateString()
-console.log(comment.updatedAt)
 const date = dayjs(comment?.updatedAt).fromNow(false)
 let buttons = null
 if(user){

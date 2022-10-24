@@ -10,9 +10,9 @@ import { isPlaying, setCurrentSong } from '../../store/songs';
 const Player = () => {
   const song = useSelector(state => state.songs.currentSong)
   const playState = useSelector(state => state.songs.playing)
-  const [source, changeSrc] = useState(null)
-  const player = useRef();
   const dispatch = useDispatch()
+  const player = useRef();
+  const [source, changeSrc] = useState(null)
   useEffect(() => {
 
     changeSrc(song.url)
