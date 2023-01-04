@@ -62,10 +62,25 @@ export const uploadSong = (song) => async dispatch => {
   if(song.imageUrl === ''){
     song.imageUrl = 'https://res.cloudinary.com/degkakjou/image/upload/v1666387344/DALL_E_2022-10-21_17.15.36_-_an_album_cover_with_a_record_made_from_bone_in_the_style_of_vaporware_njte74.png'
   }
+
+  const {title,
+    description,
+    url,
+    imageUrl,
+    albumId } = song;
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("url", url);
+    formData.append("image", imageUrl);
+    formData.append("albumId", albumId);
+    console.log(albumId === null, 'this is the songs',formData)
   const response = await csrfFetch('/api/songs', {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(song),
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
   });
   if (response.ok) {
     const song = await response.json();

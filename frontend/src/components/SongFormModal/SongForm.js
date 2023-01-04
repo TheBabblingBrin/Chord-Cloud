@@ -45,13 +45,16 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
     onClick={()=>{
       setTitle('test song 1');
       setDescription('dev test');
-      setImage('https://cdn.pixabay.com/audio/2022/08/05/13-29-08-266_200x200.png');
+      // setImage('https://cdn.pixabay.com/audio/2022/08/05/13-29-08-266_200x200.png');
       setUrl('https://cdn.pixabay.com/audio/2022/08/04/audio_2dde668d05.mp3');
       // setAlbumId(1)
     }
     }>Demo Song</button>)
   }
-
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
 
 
 
@@ -120,12 +123,14 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
           value={url}
           onChange={updateUrl}
         />
-         <input
+         {/* <input
           type="text"
           placeholder="Image URL"
           value={imageUrl}
           onChange={updateImage}
-        />
+        /> */}
+        <input type="file" value={''} onChange={updateFile} />
+
          {/* <input
           type="number"
           placeholder="Album ID"

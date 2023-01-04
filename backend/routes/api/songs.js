@@ -1,4 +1,5 @@
 const express = require('express')
+const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3')
 const { setTokenCookie, restoreUser, requireAuth, isOwner} = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
@@ -17,9 +18,9 @@ check('url')
 check('url')
   .custom(url=> /^https?:\/\/.+\.(mp3|MP3)$/.test(url))
   .withMessage('Please use a valid Audio URL (e.g. https://example.mp3)'),
-check('imageUrl')
-  .custom(imageUrl => /^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl))
-  .withMessage(`Please use a valid Image URL (e.g. https://example.jpg)`),
+// check('imageUrl')
+//   .custom(imageUrl => /^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl))
+//   .withMessage(`Please use a valid Image URL (e.g. https://example.jpg)`),
 check('description')
   .isLength({max: 250 })
   .withMessage("Song description must be less than 250 characters"),
@@ -139,8 +140,10 @@ router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
 } )
 
 //Create song w or w/o album id
-router.post('/', validateSong, requireAuth, async (req, res, next) =>{
-  const {title, description, url, imageUrl, albumId} = req.body
+router.post('/',   singleMulterUpload("image"), validateSong, requireAuth, async (req, res, next) =>{
+  req.body.albumId === 'null'? req.body.albumId = null:null
+  const {title, description, url, albumId} = req.body
+  const imageUrl = await singlePublicFileUpload(req.file);
   const userId = req.user.id
   const album = await Album.findByPk(albumId)
   if(!album && albumId !== null) {

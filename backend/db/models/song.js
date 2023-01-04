@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Song.init({
-    albumId: DataTypes.INTEGER,
+    albumId:DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     title: DataTypes.TEXT,
     description: DataTypes.TEXT,
