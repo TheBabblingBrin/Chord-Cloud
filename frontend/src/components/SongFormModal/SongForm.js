@@ -53,9 +53,14 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   }
   const updateFile = (e) => {
     const file = e.target.files[0];
+    console.log('TARGET FILES', e.target.files)
     if (file) setImage(file);
   };
 
+  const updateSong = (e) => {
+    const file = e.target.files[0];
+    if (file) setUrl(file);
+  };
 
 
   const handleSubmit = async (e) => {
@@ -117,12 +122,14 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
           value={description}
           onChange={updateDescription}
         />
-        <input
+        {/* <input
           type="text"
           placeholder="Audio URL"
           value={url}
           onChange={updateUrl}
-        />
+        /> */}
+        <input type="file" value={''} onChange={updateSong} />
+
          {/* <input
           type="text"
           placeholder="Image URL"

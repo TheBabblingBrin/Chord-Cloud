@@ -71,10 +71,12 @@ export const uploadSong = (song) => async dispatch => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("url", url);
-    formData.append("image", imageUrl);
+    formData.append("audioType", url.type);
+    formData.append("imageType", imageUrl.type)
+    formData.append("songFiles", url)
+    formData.append("songFiles", imageUrl)
     formData.append("albumId", albumId);
-    console.log(albumId === null, 'this is the songs',formData)
+    console.log(albumId === null, song, 'this is the songs',formData)
   const response = await csrfFetch('/api/songs', {
     method: "POST",
     headers: {

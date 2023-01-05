@@ -1,5 +1,5 @@
 const express = require('express')
-const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3')
+const {singlePublicFileUpload, singleMulterUpload, multipleMulterUpload, multiplePublicFileUpload} = require('../../awsS3')
 const { setTokenCookie, restoreUser, requireAuth, isOwner} = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
@@ -11,16 +11,16 @@ const validateSong = [
   check('title')
   .isLength({ min: 4, max: 200 })
   .withMessage("Song title must be between 4 and 200 characters"),
-check('url')
+check('audioType')
   .exists({ checkFalsy: true })
   .notEmpty()
   .withMessage("Audio is required"),
-check('url')
-  .custom(url=> /^https?:\/\/.+\.(mp3|MP3)$/.test(url))
-  .withMessage('Please use a valid Audio URL (e.g. https://example.mp3)'),
-// check('imageUrl')
-//   .custom(imageUrl => /^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl))
-//   .withMessage(`Please use a valid Image URL (e.g. https://example.jpg)`),
+check('audioType')
+  .custom(type => type.split('/')[0] === 'audio')
+  .withMessage('Please use a valid Audio File (e.g. file.mp3)'),
+check('imageType')
+  .custom(type => type.split('/')[0] === 'image')
+  .withMessage(`Please use a valid Image (e.g. file.jpg)`),
 check('description')
   .isLength({max: 250 })
   .withMessage("Song description must be less than 250 characters"),
@@ -140,10 +140,10 @@ router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
 } )
 
 //Create song w or w/o album id
-router.post('/',   singleMulterUpload("image"), validateSong, requireAuth, async (req, res, next) =>{
+router.post('/', multipleMulterUpload('songFiles'), validateSong, requireAuth, async (req, res, next) =>{
   req.body.albumId === 'null'? req.body.albumId = null:null
-  const {title, description, url, albumId} = req.body
-  const imageUrl = await singlePublicFileUpload(req.file);
+  const {title, description, albumId, audioType, imageType} = req.body
+  const newSongFiles = await multiplePublicFileUpload(req.files);
   const userId = req.user.id
   const album = await Album.findByPk(albumId)
   if(!album && albumId !== null) {
@@ -153,7 +153,7 @@ router.post('/',   singleMulterUpload("image"), validateSong, requireAuth, async
       "statusCode": 404
     })
   }
-  const song = await Song.create({userId, albumId, title, description, url, imageUrl})
+  const song = await Song.create({userId, albumId, title, description, url: newSongFiles[0], imageUrl: newSongFiles[1]})
   res.statusCode = 201
   res.json(song)
 })
