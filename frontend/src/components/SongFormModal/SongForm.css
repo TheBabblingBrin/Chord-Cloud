@@ -1,0 +1,22 @@
+input[type=file] {
+  display: none !important;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 400px;
+  border: 1px solid rgba(107, 106, 106, 0.5);
+  border-radius: 3px;
+  margin: 5px 0;
+  font-size: 1rem;
+  padding: 2px 5px;
+  color: grey;
+
+}
+
+label:hover {
+  border: 1px solid rgb(192, 192, 192);
+  cursor: pointer;
+}

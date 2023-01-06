@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs';
 import SignupForm from '../SignupFormModal';
 import { restoreUser } from '../../store/session';
+import './SongForm.css'
 
 function SongFormModal({formType, song, style}) {
   const [showModal, setShowModal] = useState(false);

@@ -7,7 +7,7 @@ import { getOneSong, getSongById, loadSongs, removeSong} from '../../store/songs
 import { updateSong, uploadSong } from '../../store/songs';
 import ErrorList from '../ErrorList';
 import FormLogo from '../FormLogo';
-
+import LoadingSpinner from '../Loading';
 const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const dispatch = useDispatch()
   const history = useHistory();
@@ -19,6 +19,8 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const [albumId, setAlbumId] = useState(song? song.albumId: null);
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
 
 
   const updateTitle = (e) => setTitle(e.target.value);
@@ -54,6 +56,8 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true)
+    setIsLoading(true)
+
     const validationErrors = []
 
     const payload = {
@@ -71,6 +75,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
       const data = await res.json();
       if (data && data.errors)
       validationErrors.push(...data.errors)
+      setIsLoading(false)
       setErrors(validationErrors)
 
     });
@@ -87,11 +92,18 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
   // setSubmitted(false)
 
    if (createdSong) {
+     setIsLoading(false)
       setShowModal(false)
+
        history.push(`/songs/${createdSong.id}`);
+
     }
   };
 
+  if(isLoading){
+    return  (
+    <LoadingSpinner />)
+  }
 
 
   return (
@@ -112,7 +124,8 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
         />
 
             <label for='file-upload' className='spot-upload-label'>
-                        Song :
+            {url.name ? url.name : "Audio"}
+
                         <input
                             id='file-upload'
                             type="file"
@@ -120,10 +133,11 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
                             onChange={updateSong} />
                     </label>
 
-        <label for='file-upload' className='spot-upload-label'>
-                        Image :
+        <label for='file-img-upload' className='spot-upload-label'>
+        {imageUrl.name ? imageUrl.name : "Image"}
+
                         <input
-                            id='file-upload'
+                            id='file-img-upload'
                             type="file"
                             // value={''}
                             onChange={updateFile} />
