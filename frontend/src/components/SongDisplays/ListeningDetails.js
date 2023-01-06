@@ -8,7 +8,7 @@ import CommentsIndex from '../Comments/CommentIndex';
 import CommentBar from '../Comments/CommentBar';
 const ListeningDetails = ({songId, song}) => {
   const dispatch = useDispatch()
-
+  console.log('SONG USERRRRRRRRRRRRRRRRRRRRRRRR', song?.User)
 
   let songs = useSelector(getAllSongs);
   if(!songs){
@@ -22,7 +22,7 @@ const ListeningDetails = ({songId, song}) => {
         <div className='listen-artist-details'>
           <input
             type='image'
-            src='https://i.postimg.cc/mksDn07B/chord-Cloud-Full-removebg-preview.png'
+            src={song.User?.profileImg? song.User?.profileImg: 'https://i.postimg.cc/mksDn07B/chord-Cloud-Full-removebg-preview.png'}
           ></input>
           <span>{song.User.username}</span>
         </div>

@@ -76,7 +76,7 @@ router.get('/', async (req, res, next) =>{
   const songs = await Song.findAll({
     include:{
       model: User,
-      attributes:['id', 'username', 'imageUrl']
+      attributes:['id', 'username', 'profileImg']
     },
     where,
     ...pagination
@@ -100,7 +100,7 @@ router.get('/:songId', async (req, res, next) =>{
   const song = await Song.findByPk(req.params.songId, {
     include:[{
       model: User,
-      attributes:['id','username','imageUrl']
+      attributes:['id','username','profileImg']
     },
     {
       model: Album,
@@ -120,7 +120,7 @@ router.get('/:songId', async (req, res, next) =>{
 
 //Edit a song by id
 router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
-  const {title, description, url, imageUrl, albumId} = req.body
+  const {title, description, url, profileImg, albumId} = req.body
   const userId = req.user.id
 
 
@@ -135,7 +135,7 @@ router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
   if(isOwner(res, userId, song.userId)){
     return
   }
-  await song.update({title, description, url, imageUrl, albumId, userId})
+  await song.update({title, description, url, profileImg, albumId, userId})
   res.json(song)
 } )
 
