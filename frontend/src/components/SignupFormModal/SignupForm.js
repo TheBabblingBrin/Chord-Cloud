@@ -19,6 +19,7 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
 
 
+
   if (sessionUser) return <Redirect to="/" />;
   const updateFile = (e) => {
     const file = e.target.files[0];
@@ -28,9 +29,9 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
-        .catch(async (res) => {
-          const data = await res.json();
+      return dispatch(sessionActions.signup({ email, username, password, firstName, lastName, image }))
+        .catch(async (data) => {
+          // const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
     }
@@ -59,6 +60,15 @@ function SignupFormPage() {
           placeholder='Last Name'
           onChange={(e) => setLastname(e.target.value)}
         />
+
+        <label for='file-img-upload' className='spot-upload-label'>
+          {image?.name ? image.name : "Profile Image"}
+          <input
+            id='file-img-upload'
+            type="file"
+            // value={''}
+            onChange={updateFile} />
+        </label>
 
 
         <input

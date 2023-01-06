@@ -21,13 +21,14 @@ module.exports = {
         type: Sequelize.STRING
         // allowNull: false,
       },
+      profileImg:{
+        type: Sequelize.STRING
+        // allowNull: false,
+      },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
         unique: true
-      },
-      imageUrl:{
-        type: Sequelize.STRING
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
