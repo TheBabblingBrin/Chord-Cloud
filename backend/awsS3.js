@@ -25,17 +25,21 @@ const singlePublicFileUpload = async (file) => {
     ACL: "public-read",
   };
   const result = await s3.upload(uploadParams).promise();
-
   // save the name of the file in your bucket as the key in your database to retrieve for later
-  return result.Location;
+  return [mimetype.split('/')[0], result.Location];
 };
 
 const multiplePublicFileUpload = async (files) => {
-  return await Promise.all(
+  let fileObj = {}
+  let parFiles = await Promise.all(
     files.map((file) => {
-      return singlePublicFileUpload(file);
+     return singlePublicFileUpload(file);
+
     })
+
   );
+  parFiles.forEach(file => fileObj[file[0]] = file[1])
+  return fileObj
 };
 
 // --------------------------- Prviate UPLOAD ------------------------

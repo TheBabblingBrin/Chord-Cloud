@@ -119,8 +119,13 @@ router.get('/:songId', async (req, res, next) =>{
 })
 
 //Edit a song by id
-router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
-  const {title, description, url, profileImg, albumId} = req.body
+router.put('/:songId', multipleMulterUpload('songFiles'), validateSong, requireAuth, async (req, res, next) =>{
+  req.body.albumId === 'null'? req.body.albumId = null:null
+
+  const {title, description, albumId, audioType, imageType} = req.body
+  const newSongFiles = await multiplePublicFileUpload(req.files);
+  console.log('SONG FILES ++++++++++++++++', newSongFiles)
+
   const userId = req.user.id
 
 
@@ -135,7 +140,7 @@ router.put('/:songId', validateSong, requireAuth, async (req, res, next) =>{
   if(isOwner(res, userId, song.userId)){
     return
   }
-  await song.update({title, description, url, profileImg, albumId, userId})
+  await song.update({userId, albumId, title, description, url: newSongFiles.audio, imageUrl: newSongFiles.image})
   res.json(song)
 } )
 
@@ -153,7 +158,7 @@ router.post('/', multipleMulterUpload('songFiles'), validateSong, requireAuth, a
       "statusCode": 404
     })
   }
-  const song = await Song.create({userId, albumId, title, description, url: newSongFiles[0], imageUrl: newSongFiles[1]})
+  const song = await Song.create({userId, albumId, title, description, url: newSongFiles.audio, imageUrl: newSongFiles.image})
   res.statusCode = 201
   res.json(song)
 })

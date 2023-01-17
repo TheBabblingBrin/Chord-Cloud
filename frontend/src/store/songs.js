@@ -76,7 +76,6 @@ export const uploadSong = (song) => async dispatch => {
     formData.append("songFiles", url)
     formData.append("songFiles", imageUrl)
     formData.append("albumId", albumId);
-    console.log(albumId === null, song, 'this is the songs',formData.songFiles)
   const response = await csrfFetch('/api/songs', {
     method: "POST",
     headers: {
@@ -105,10 +104,24 @@ export const removeSong = (songId) => async dispatch => {
 
 ///UPDATE SONG
 export const updateSong = (song) => async dispatch => {
+  const {title,
+    description,
+    url,
+    imageUrl,
+    albumId } = song;
+  const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("audioType", url.type? url.type: 'audio');
+    formData.append("imageType", imageUrl.type? imageUrl.type : 'image')
+    formData.append("songFiles", url)
+    formData.append("songFiles", imageUrl)
+    formData.append("albumId", albumId);
+    console.log(formData)
   const response = await csrfFetch(`/api/songs/${song.id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(song),
+    headers: { "Content-Type": "multipart/form-data"},
+    body: formData,
   });
   if (response.ok) {
     const song = await response.json();

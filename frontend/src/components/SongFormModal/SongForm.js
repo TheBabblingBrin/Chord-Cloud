@@ -25,8 +25,6 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
-  const updateUrl = (e) => setUrl(e.target.value);
-  const updateImage = (e) => setImage(e.target.value);
   const updateAlbumId = (e) => setAlbumId(e.target.value);
 
   const user = useSelector(state => state.session.user)
@@ -47,7 +45,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
     if (file) setImage(file);
   };
 
-  const updateSong = (e) => {
+  const updateSongUrl = (e) => {
     const file = e.target.files[0];
     if (file) setUrl(file);
   };
@@ -130,7 +128,7 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
                             id='file-upload'
                             type="file"
                             // value={''}
-                            onChange={updateSong} />
+                            onChange={updateSongUrl} />
                     </label>
 
         <label for='file-img-upload' className='spot-upload-label'>

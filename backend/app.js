@@ -8,10 +8,14 @@ const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 const { ValidationError } = require('sequelize');
+const bodyParser = require("body-parser");
+
 
 const app = express();
 app.use(morgan("dev"))
 app.use(cookieParser());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
