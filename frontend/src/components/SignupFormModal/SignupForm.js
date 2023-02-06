@@ -4,19 +4,23 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import FormLogo from "../FormLogo";
 import ErrorList from '../ErrorList';
+import LoadingSpinner from '../Loading';
+
 
 
 function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [username, setUsername] = useState("");
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+
 
 
 
@@ -27,17 +31,25 @@ function SignupFormPage() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
+
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, firstName, lastName, image }))
-        .catch(async (data) => {
-          // const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setIsLoading(false)
+            setErrors(data.errors);}
         });
     }
+    setIsLoading(false)
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
-
+  if(isLoading){
+    return  (
+    <LoadingSpinner />)
+  }
   return (
     <>
 
@@ -61,12 +73,12 @@ function SignupFormPage() {
           onChange={(e) => setLastname(e.target.value)}
         />
 
-        <label for='file-img-upload' className='spot-upload-label'>
+        <label for='file-img-upload' className='image-file spot-upload-label'>
           {image?.name ? image.name : "Profile Image"}
           <input
             id='file-img-upload'
             type="file"
-            // value={''}
+            placeholder="Image URL"
             onChange={updateFile} />
         </label>
 

@@ -121,17 +121,17 @@ const SongForm = ({song, formType = 'createSong', setShowModal}) => {
           onChange={updateDescription}
         />
 
-            <label for='file-upload' className='spot-upload-label'>
+            <label for='song-file-upload' className='song-file spot-upload-label'>
             {url.name ? url.name : "Audio"}
 
                         <input
-                            id='file-upload'
+                            id='song-file-upload'
                             type="file"
                             // value={''}
                             onChange={updateSongUrl} />
                     </label>
 
-        <label for='file-img-upload' className='spot-upload-label'>
+        <label for='file-img-upload' className='image-file spot-upload-label'>
         {imageUrl.name ? imageUrl.name : "Image"}
 
                         <input

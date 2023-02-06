@@ -33,6 +33,9 @@ const validateSignup = [
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
+  check('imageType')
+  .custom(type => type.split('/')[0] === 'image')
+  .withMessage(`Please use a valid Image (e.g. file.jpg)`),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6, max: 30})
@@ -48,7 +51,8 @@ router.post(
   async (req, res) => {
     const { email, password, username, firstName, lastName, imageType } = req.body;
     const profileImg = await singlePublicFileUpload(req.file);
-    const user = await User.signup({ email, username, password, firstName, lastName, profileImg});
+    console.log(profileImg, 'PROFILE IMAGE+++++++++++')
+    const user = await User.signup({ email, username, password, firstName, lastName, profileImg:profileImg[1]});
     const id = user.id
     const token = await setTokenCookie(res, user);
     return res.json(

@@ -17,6 +17,16 @@ function ErrorList({errors, id}) {
   for(let node of nodes){
     if(node?.hasChildNodes()){
       for( let form of node.childNodes.values()){
+        if(form.nodeName === 'LABEL'){
+          let formPH = form.className
+            form.style.border = noErrorBorder
+            if(formPH === 'song-file spot-upload-label' && errors.includes('Please use a valid Audio File (e.g. file.mp3)')){
+              form.style.border = errorBorder
+            }
+            if(formPH === 'image-file spot-upload-label' && errors.includes('Please use a valid Image (e.g. file.jpg)')){
+              form.style.border = errorBorder
+            }
+        }
        if(form.nodeName === 'INPUT') {
         let formPH = form.placeholder
             form.style.border = noErrorBorder
