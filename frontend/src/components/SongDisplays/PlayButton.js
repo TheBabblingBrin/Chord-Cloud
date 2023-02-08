@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { setCurrentSong } from '../../store/songs';
 
 
-const PlayButton = ({ song }) => {
+const PlayButton = ({ song, location = null }) => {
   const dispatch = useDispatch()
   const currentSong = useSelector(state => state.songs.currentSong)
   const [button, setButton] = useState(<i className="fa-solid fa-play"></i>)
@@ -23,6 +23,7 @@ const PlayButton = ({ song }) => {
 
   return (
       <button
+      id={location? location:null }
       className='play-button'
       onClick={()=>
         dispatch(setCurrentSong(song))}>

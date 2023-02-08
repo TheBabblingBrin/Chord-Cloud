@@ -11,6 +11,7 @@ import SongShow from "./components/SongDisplays/SongShow";
 import SongForm from "./components/SongFormModal/SongForm";
 import Player from "./components/AudioPlayer";
 import Splashpage from "./components/Splashpage";
+import UserPage from "./components/UserPage";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Splashpage} />
           <Route path="/songs/:songId"  songs={songs} component={SongShow}/>
+          <Route path='/users/:userId'component={UserPage}/>
 
         </Switch>
       )}

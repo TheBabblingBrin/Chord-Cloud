@@ -8,7 +8,6 @@ import CommentsIndex from '../Comments/CommentIndex';
 import CommentBar from '../Comments/CommentBar';
 const ListeningDetails = ({songId, song}) => {
   const dispatch = useDispatch()
-  console.log('SONG USERRRRRRRRRRRRRRRRRRRRRRRR', song?.User)
 
   let songs = useSelector(getAllSongs);
   if(!songs){

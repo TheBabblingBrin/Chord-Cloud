@@ -5,6 +5,8 @@ const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
+const { Song, Album, Comment } = require('../../db/models');
+
 const validateSignup = [
   check('firstName')
     .exists({ checkFalsy: true })
@@ -51,7 +53,6 @@ router.post(
   async (req, res) => {
     const { email, password, username, firstName, lastName, imageType } = req.body;
     const profileImg = await singlePublicFileUpload(req.file);
-    console.log(profileImg, 'PROFILE IMAGE+++++++++++')
     const user = await User.signup({ email, username, password, firstName, lastName, profileImg:profileImg[1]});
     const id = user.id
     const token = await setTokenCookie(res, user);
@@ -60,6 +61,14 @@ router.post(
     );
   }
 );
+
+router.get('/:userId', async (req, res, next) =>{
+  const details = await User.findByPk(req.params.userId, {
+    include:{
+      model: Song}
+  })
+  res.json({User: details})
+})
 
 
 

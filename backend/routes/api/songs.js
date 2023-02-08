@@ -124,7 +124,6 @@ router.put('/:songId', multipleMulterUpload('songFiles'), validateSong, requireA
 
   const {title, description, albumId, audioType, imageType} = req.body
   const newSongFiles = await multiplePublicFileUpload(req.files);
-  console.log('SONG FILES ++++++++++++++++', newSongFiles)
 
   const userId = req.user.id
 

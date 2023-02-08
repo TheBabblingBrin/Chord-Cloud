@@ -1,0 +1,159 @@
+#profile-selection-bar{
+  box-sizing: border-box;
+  width: 100%;
+  height: 35px;
+  border-bottom: 1px solid rgba(60, 64, 71, .1);
+  margin-bottom: 20px;
+
+}
+.profile-track-details *{
+
+  text-align: left;
+  padding: 0;
+  opacity: .7;
+  width: 100%;
+}
+.profile-track-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content:flex-start;
+  align-items:flex-start;
+  margin-left: 10px;
+  width: 498px;
+
+
+}
+
+.profile-track-details a{
+  margin-left: 0px;
+  margin-top: 3px;
+  margin-bottom:-3px;
+  opacity: 2 !important;
+  color: rgb(108, 64, 128);
+}
+.profile-track-details span{
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  max-width: 150px;
+  text-overflow: ellipsis;
+
+}
+
+.profile-track-artist{
+  color: #333333;
+  opacity: .4;
+  font-size: 12px;
+}
+
+.profile-bar-button{
+  height: 100%;
+  background-color: transparent;
+  border: 2px transparent solid;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.profile-bar-button:hover{
+  border-bottom-color: #333333 ;
+  color: #3c4047
+}
+.profile-media-list{
+  padding: 0;
+}
+.profile-track-body{
+  box-sizing: border-box;
+  display: flex;
+  width: 819px;
+  height: 168px;
+  margin-bottom: 40px;
+}
+#profile-track-button{
+  top: 0;
+  opacity: 1;
+
+}
+.profile-track-header{
+  display: flex;
+  width: 100%;
+  height: 50px;
+}
+
+.profile-track-image{
+  border: 1px solid rgba(60, 64, 71, .4);
+  width: 160px;
+  height: 160px;
+  object-fit: fill;
+  margin-right:15px;
+}
+.user-details-banner{
+  box-sizing: border-box;
+   display: flex;
+    width: 1240px;
+    height: 260px;
+    z-index: 1;
+    background-color: transparent;
+    padding: 30px 25px 20px 25px;
+}
+.user-container-img{
+  width: 200px;
+  height: 200px;
+  margin-right: 30px;
+  border: 1px transparent solid;
+  border-radius: 99px;
+  background-color: #3c4047 ;
+}
+.user-title{
+  background-color: black;
+  box-sizing: border-box;
+
+  color: #FCFCF4;
+  display: flex;
+  font-size: 24px;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+  width: fit-content;
+  max-width: 550px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  padding: 4px;
+}
+
+.user-title-container{
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  /* top: 10px; */
+  /* left: 30px; */
+  height: 63.8px;
+  width: 650px;
+
+}
+
+
+  .user-banner-bg{
+    position: absolute;
+    width: 1238px;
+    height: 260px;
+    background-size: 500%;
+    background-position: center 40%;
+    filter: blur(1px) brightness(60%);
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(207,206,205,1) 100%);
+    margin: -5 -5;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .profile-track-add-container{
+    justify-self: end;
+  }
+  #track-updated-at{
+  color: #333333;
+  opacity: .4;
+  font-size: 12px;
+  }
