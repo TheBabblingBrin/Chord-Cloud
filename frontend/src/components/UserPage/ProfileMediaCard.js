@@ -32,6 +32,10 @@ const ProfileMediaCard = ({ song, album, user }) => {
       onClick={()=>
         history.push(`/songs/${song.id}`)}
       />
+      <div
+        className='profile-track-content'
+      >
+
       <div className='profile-track-header'>
         <PlayButton song={song} location={'profile-track-button'} />
       <div className='profile-track-details'>
@@ -47,6 +51,11 @@ const ProfileMediaCard = ({ song, album, user }) => {
       <span id='track-updated-at'>{date === 'in a few seconds'? 'a few seconds ago': date}</span>
       </div>
 
+      </div>
+      <div
+      className='profile-track-bg'
+      style={{backgroundImage: `url(${song.imageUrl})`}}
+      ></div>
       </div>
       </div>
   );

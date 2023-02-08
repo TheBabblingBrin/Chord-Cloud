@@ -74,16 +74,34 @@
   opacity: 1;
 
 }
+.profile-track-bg{
+  position: absolute;
+  width: 631px;
+  height: 110px;
+  background-size: 500%;
+  background-position: center 40%;
+  filter: blur(1px) brightness(60%);
+  /* margin: -5 -5; */
+  overflow: hidden;
+  z-index: 0;
+}
+.profile-track-content{
+  height: 162px;
+}
 .profile-track-header{
   display: flex;
   width: 100%;
+  margin-bottom: 2px;
   height: 50px;
+  z-index: 2;
 }
 
 .profile-track-image{
   border: 1px solid rgba(60, 64, 71, .4);
-  width: 160px;
-  height: 160px;
+  min-width: 160px;
+  min-height: 160px;
+  max-width: 160px;
+  max-height: 160px;
   object-fit: fill;
   margin-right:15px;
 }
@@ -103,6 +121,7 @@
   border: 1px transparent solid;
   border-radius: 99px;
   background-color: #3c4047 ;
+  cursor: unset;
 }
 .user-title{
   background-color: black;

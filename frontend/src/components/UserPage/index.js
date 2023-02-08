@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react";
 import { useHistory, Redirect } from 'react-router-dom';
 
-import { getOneUser } from '../../store/session';
+import { getOneUser, getURL } from '../../store/session';
 import './index.css'
 import ProfileDetails from './ProfileDetails';
 
@@ -16,6 +16,7 @@ const UserPage =  () => {
 
 
   useEffect(() => {
+    dispatch(getURL())
     dispatch(getOneUser(userId))
 }, [dispatch])
 

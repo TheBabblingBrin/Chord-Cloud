@@ -12,6 +12,7 @@ const ProfileDropDown = ({user, logout}) => {
 
           <span>{user.username}</span>
           <span>{user.email}</span>
+          <button onClick={()=> history.push(`/users/${user.id}`)}>Profile</button>
           <button onClick={logout}>Log Out</button>
 
     </div>

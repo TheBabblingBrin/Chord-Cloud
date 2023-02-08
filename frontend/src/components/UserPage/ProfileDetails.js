@@ -4,14 +4,13 @@ import {  } from '../../store/songs';
 import { useState, useEffect } from "react";
 import './index.css'
 import ProfileMediaCard from './ProfileMediaCard';
+import { getOneUser } from '../../store/session';
 const ProfileDetails = ({songId, song}) => {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1);
   const media = useSelector(state => state.session.selectedUser?.User.Songs)
   const user = useSelector(state => state.session.selectedUser?.User)
-  useEffect(()=>{
-    console.log(media)
-  },[dispatch, page])
+
 
   const selected = {
     borderBottomColor: '#333333',
@@ -29,14 +28,14 @@ const ProfileDetails = ({songId, song}) => {
               }
               onClick={e => setPage(1)}
               >Tracks</button>
-        <button
+        {/* <button
               className='profile-bar-button'
               style={
                 page === 2?
                 selected:null
               }
               onClick={(e) => setPage(2)}
-              >Albums</button>
+              >Albums</button> */}
       </div>
       <div className='listening-wrapper-left'>
         <ul className='profile-media-list'>

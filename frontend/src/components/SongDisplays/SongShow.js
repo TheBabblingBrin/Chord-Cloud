@@ -63,7 +63,9 @@ if(!song|| !song.User){
       </span>
       </div>
     <div id="sound-artist">
-      <span>{song?.User?.username}</span>
+      <span
+      onClick={()=> history.push(`/users/${song.User.id}`)}
+>{song?.User?.username}</span>
       </div>
     </div>
     <span id='song-updated-at'>{song.updatedAt === song.createdAt? 'Uploaded': 'Updated'} {date === 'in a few seconds'? 'a few seconds ago': date}</span>
