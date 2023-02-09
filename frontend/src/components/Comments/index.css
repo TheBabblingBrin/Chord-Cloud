@@ -70,14 +70,20 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-.comment-song{
-
-  width: 640px;
+.comment-content{
+  min-width: 620px;
   height: auto;
   min-height: 60px;
   max-height: 100px;
-  padding: 10px 10px 10px 0;
+  margin-left: 5px;
+}
+.comment-song{
+  display: flex;
+  min-width: 640px;
+  height: auto;
+  min-height: 60px;
+  max-height: 100px;
+  padding: 10px 10px 0px 0;
 
 }
 
@@ -94,6 +100,7 @@
 .comment-username{
   font-size: 12px;
   color: #999999;
+  cursor: pointer;
 }
 
 .comment-song p{
@@ -130,4 +137,16 @@
 
 .comment-song:hover .comment-button{
   opacity: 1;
+}
+.comment-portrait{
+  width: 40px;
+  height: 40px;
+}
+.comment-portrait-image{
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border: 1px transparent solid;
+  border-radius: 99px;
+  background-color: #3c4047 ;
 }

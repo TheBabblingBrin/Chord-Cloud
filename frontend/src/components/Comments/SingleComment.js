@@ -48,9 +48,23 @@ let content = null
  comment? content =(
 
   <div className='comment-song'>
-    <div className='comment-portrait'></div>
+    <div className='comment-portrait'>
+    <input
+      className='comment-portrait-image'
+      type='image'
+      src={comment?.User.profileImg? comment.User.profileImg: 'https://i.postimg.cc/mksDn07B/chord-Cloud-Full-removebg-preview.png'}
+      onClick={()=>
+        history.push(`/users/${comment.User.id}`)}
+      />
+    </div>
+  <div className='comment-content'>
+
   <div className='comment-item-meta'>
-    <span className='comment-username'>
+    <span
+    className='comment-username'
+    onClick={()=> history.push(`/users/${comment.User.id}`)}
+
+    >
       {comment.User.username}
     </span>
    <div className='comment-end'>
@@ -61,6 +75,7 @@ let content = null
     <p>
       {comment.body}
     </p>
+      </div>
   </div>
 ):
   content = null
